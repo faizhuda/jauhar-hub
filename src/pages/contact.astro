@@ -1,0 +1,71 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import WhatsAppCta from '../components/WhatsAppCta.astro';
+import { SITE } from '../config';
+
+const fullAddress = `${SITE.address.street}, ${SITE.address.postalCode} ${SITE.address.locality}, ${SITE.address.region}, Malaysia`;
+---
+
+<BaseLayout
+  title="Contact"
+  description="Find Jauhar Urban Farming at IIUM Gombak, Selangor. Opening hours, WhatsApp ordering, social media, and directions to our campus farm."
+>
+  <section class="mx-auto max-w-6xl px-4 py-12 sm:py-16">
+    <h1 class="text-3xl font-bold text-leaf-950 sm:text-4xl">Contact &amp; find us</h1>
+    <p class="mt-3 max-w-2xl text-stone-700">
+      The fastest way to reach us is WhatsApp — for orders, farm tours, or anything else.
+    </p>
+
+    <div class="mt-8 grid gap-8 lg:grid-cols-2">
+      <div class="space-y-6">
+        <div class="rounded-2xl border border-leaf-100 bg-leaf-50 p-6">
+          <h2 class="flex items-center gap-2 font-semibold text-leaf-900">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 text-leaf-600" aria-hidden="true">
+              <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"></path>
+              <circle cx="12" cy="10" r="3"></circle>
+            </svg>
+            Where we are
+          </h2>
+          <address class="mt-2 not-italic text-stone-700">{fullAddress}</address>
+        </div>
+
+        <div class="rounded-2xl border border-leaf-100 bg-leaf-50 p-6">
+          <h2 class="flex items-center gap-2 font-semibold text-leaf-900">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 text-leaf-600" aria-hidden="true">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+            Opening hours
+          </h2>
+          <p class="mt-2 text-stone-700">{SITE.hours.label}</p>
+        </div>
+
+        <div class="rounded-2xl border border-leaf-100 bg-leaf-50 p-6">
+          <h2 class="font-semibold text-leaf-900">Order or ask us anything</h2>
+          <p class="mt-2 text-sm text-stone-600">
+            Chat opens with a ready-made greeting — just hit send.
+          </p>
+          <div class="mt-4">
+            <WhatsAppCta size="lg" label="Chat on WhatsApp" />
+          </div>
+          <p class="mt-4 text-sm text-stone-600">
+            Or follow the farm:
+            <a href={SITE.socials.instagram} target="_blank" rel="noopener noreferrer" class="font-semibold text-leaf-700 hover:underline">Instagram</a>
+            ·
+            <a href={SITE.socials.facebook} target="_blank" rel="noopener noreferrer" class="font-semibold text-leaf-700 hover:underline">Facebook</a>
+          </p>
+        </div>
+      </div>
+
+      <!-- Maps embed lazy — resource terberat halaman ini (PRD §10.3) -->
+      <iframe
+        src={SITE.mapsEmbedUrl}
+        title="Map showing the location of Jauhar Urban Farming at IIUM Gombak"
+        loading="lazy"
+        allowfullscreen
+        referrerpolicy="no-referrer-when-downgrade"
+        class="h-80 w-full rounded-2xl border-0 shadow-sm lg:h-full lg:min-h-96"
+      ></iframe>
+    </div>
+  </section>
+</BaseLayout>

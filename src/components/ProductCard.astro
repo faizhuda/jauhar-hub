@@ -1,0 +1,73 @@
+---
+import { Image } from 'astro:assets';
+import type { CollectionEntry } from 'astro:content';
+import JsonLd from './JsonLd.astro';
+import WhatsAppCta from './WhatsAppCta.astro';
+
+interface Props {
+  product: CollectionEntry<'products'>;
+  /** JSON-LD Product hanya dipasang di halaman katalog (PRD §9.2). */
+  withJsonLd?: boolean;
+  /** Baris pertama katalog boleh eager; sisanya lazy (PRD §10.1). */
+  loading?: 'lazy' | 'eager';
+}
+
+const { product, withJsonLd = false, loading = 'lazy' } = Astro.props;
+const { name, price, unit, description, image, imageAlt, category, inStock } = product.data;
+
+const categoryLabels: Record<typeof category, string> = {
+  fresh: 'Fresh produce',
+  processed: 'Farm-made',
+  experience: 'Experience',
+};
+
+const productLd = {
+  '@type': 'Product',
+  name,
+  image: new URL(image.src, Astro.site).href,
+  description,
+  offers: {
+    '@type': 'Offer',
+    price: price.toFixed(2),
+    priceCurrency: 'MYR',
+    availability: inStock ? 'https://schema.org/InStock' : 'https://schema.org/OutOfStock',
+  },
+};
+---
+
+<article class="flex flex-col overflow-hidden rounded-2xl border border-stone-200 bg-white shadow-sm">
+  <Image
+    src={image}
+    alt={imageAlt}
+    width={640}
+    height={640}
+    widths={[320, 480, 640]}
+    sizes="(min-width: 1024px) 300px, (min-width: 640px) 45vw, 92vw"
+    loading={loading}
+    class="aspect-square w-full object-cover"
+  />
+  <div class="flex flex-1 flex-col gap-2 p-4">
+    <div class="flex items-start justify-between gap-2">
+      <h3 class="text-lg font-semibold text-stone-900">{name}</h3>
+      <span class="shrink-0 rounded-full bg-leaf-50 px-2.5 py-1 text-xs font-medium text-leaf-700">
+        {categoryLabels[category]}
+      </span>
+    </div>
+    <p class="font-semibold text-leaf-700">
+      RM {price.toFixed(2)} <span class="text-sm font-normal text-stone-500">/ {unit}</span>
+    </p>
+    <p class="text-sm text-stone-600">{description}</p>
+    <div class="mt-auto pt-3">
+      {
+        inStock ? (
+          <WhatsAppCta productName={name} />
+        ) : (
+          <span class="inline-flex min-h-11 w-full items-center justify-center rounded-xl bg-stone-200 px-4 py-2.5 text-sm font-semibold text-stone-500 sm:w-auto">
+            Out of stock
+          </span>
+        )
+      }
+    </div>
+  </div>
+  {withJsonLd && <JsonLd data={productLd} />}
+</article>

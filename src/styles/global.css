@@ -1,0 +1,28 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Poppins", ui-sans-serif, system-ui, "Segoe UI", sans-serif;
+
+  /* Brand palette: "leaf" green, dipakai konsisten di seluruh komponen */
+  --color-leaf-50: #f2f8f0;
+  --color-leaf-100: #e0efdb;
+  --color-leaf-200: #c2dfba;
+  --color-leaf-300: #98c78d;
+  --color-leaf-400: #6baa5e;
+  --color-leaf-500: #4a8f3e;
+  --color-leaf-600: #35722e;
+  --color-leaf-700: #2b5a27;
+  --color-leaf-800: #244822;
+  --color-leaf-900: #1e3c1e;
+  --color-leaf-950: #0e2110;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-white font-sans text-base leading-relaxed text-stone-800;
+  }
+}

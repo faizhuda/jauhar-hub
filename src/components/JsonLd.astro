@@ -1,0 +1,15 @@
+---
+/**
+ * Structured data JSON-LD (PRD §9.2).
+ * Aturan: data yang dikirim WAJIB sama persis dengan yang tampil di halaman,
+ * dan JANGAN menambahkan AggregateRating sebelum ada ≥3 review asli di halaman.
+ */
+interface Props {
+  data: Record<string, unknown>;
+}
+
+const { data } = Astro.props;
+const json = JSON.stringify({ '@context': 'https://schema.org', ...data });
+---
+
+<script type="application/ld+json" is:inline set:html={json} />

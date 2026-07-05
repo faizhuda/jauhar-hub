@@ -1,0 +1,87 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+// TODO(S1-05): seluruh teks halaman ini adalah DRAF DUMMY berbasis Proposal KKN.
+// Ganti dengan hasil wawancara profil mitra (deadline konten asli: 30 Juli, PLANNING.md §8).
+---
+
+<BaseLayout
+  title="About Us"
+  description="The story of Jauhar Urban Farming — a student-led fertigation farm at IIUM Gombak founded in 2021, growing food and community on campus land."
+>
+  <section class="mx-auto max-w-3xl px-4 py-12 sm:py-16">
+    <h1 class="text-3xl font-bold text-leaf-950 sm:text-4xl">About Jauhar Urban Farming</h1>
+
+    <h2 class="mt-10 text-2xl font-bold text-leaf-900">Our story</h2>
+    <p class="mt-3 text-stone-700">
+      Jauhar Urban Farming began in 2021, when students from Mahallah Halimah, Mahallah
+      Siddiq, and Mahallah Maryam at the International Islamic University Malaysia (IIUM)
+      decided that an unused plot of campus land could become something more. With support
+      from the university and external partners, the plot was transformed into productive
+      fertigation beds — with cucumbers as our signature crop.
+    </p>
+    <p class="mt-3 text-stone-700">
+      Today, the harvest feeds the campus community and beyond: we sell fresh cucumbers,
+      and we turn surplus harvest into value-added products like pickled cucumbers and
+      cucumber chips. Along the way, the farm has earned innovation and entrepreneurship
+      awards as a model of student-driven urban agriculture.
+    </p>
+
+    <h2 class="mt-10 text-2xl font-bold text-leaf-900">Vision &amp; mission</h2>
+    <p class="mt-3 text-stone-700">
+      <strong>Vision:</strong> to be a leading campus-based urban farm that proves fresh,
+      sustainable food can grow anywhere — even in the middle of a university.
+    </p>
+    <ul class="mt-3 list-disc space-y-2 pl-6 text-stone-700">
+      <li>Grow quality produce with resource-efficient fertigation methods.</li>
+      <li>Turn harvests into value-added products that support the community.</li>
+      <li>Open the farm as a learning space for students and visitors.</li>
+      <li>Build a farming community across the IIUM mahallahs and beyond.</li>
+    </ul>
+
+    <h2 class="mt-10 text-2xl font-bold text-leaf-900">What we do</h2>
+    <div class="mt-4 grid gap-4 sm:grid-cols-3">
+      <div class="rounded-2xl border border-leaf-100 bg-leaf-50 p-5">
+        <h3 class="font-semibold text-leaf-900">Grow</h3>
+        <p class="mt-1 text-sm text-stone-600">
+          Cucumbers and greens on drip-fed fertigation beds, tended by student volunteers.
+        </p>
+      </div>
+      <div class="rounded-2xl border border-leaf-100 bg-leaf-50 p-5">
+        <h3 class="font-semibold text-leaf-900">Make</h3>
+        <p class="mt-1 text-sm text-stone-600">
+          Small-batch pickles, chips, and other products made from our own harvest.
+        </p>
+      </div>
+      <div class="rounded-2xl border border-leaf-100 bg-leaf-50 p-5">
+        <h3 class="font-semibold text-leaf-900">Educate</h3>
+        <p class="mt-1 text-sm text-stone-600">
+          Farm tours, workshops, and planting days for students and the community.
+        </p>
+      </div>
+    </div>
+
+    <h2 class="mt-10 text-2xl font-bold text-leaf-900">The people behind the farm</h2>
+    <!-- TODO(S1-05): isi nama & peran pengelola asli dari hasil wawancara mitra. -->
+    <p class="mt-3 text-stone-700">
+      The farm is run by student caretakers from the three mahallahs, supported by
+      volunteers and advisors from IIUM. Come by during opening hours and say hello —
+      someone is always tending the beds.
+    </p>
+
+    <div class="mt-10 rounded-2xl bg-leaf-950 p-8 text-white">
+      <h2 class="text-xl font-bold">Come visit the farm</h2>
+      <p class="mt-2 text-sm text-leaf-200">
+        We love showing people around. Find us at IIUM Gombak, or book a farm tour.
+      </p>
+      <div class="mt-4 flex flex-col gap-3 sm:flex-row">
+        <a href="/contact" class="inline-flex min-h-11 items-center justify-center rounded-xl bg-white px-5 font-semibold text-leaf-900 hover:bg-leaf-50">
+          Find &amp; contact us
+        </a>
+        <a href="/products" class="inline-flex min-h-11 items-center justify-center rounded-xl border border-leaf-400 px-5 font-semibold text-white hover:bg-leaf-900">
+          See what we grow
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,40 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ProductCard from '../components/ProductCard.astro';
+
+const products = (await getCollection('products')).sort(
+  (a, b) => a.data.order - b.data.order
+);
+---
+
+<BaseLayout
+  title="Products"
+  description="Fresh cucumbers, pickles, cucumber chips, seedlings, and farm experiences from Jauhar Urban Farming, IIUM Gombak. Order easily via WhatsApp."
+>
+  <section class="mx-auto max-w-6xl px-4 py-12 sm:py-16">
+    <h1 class="text-3xl font-bold text-leaf-950 sm:text-4xl">Our products</h1>
+    <p class="mt-3 max-w-2xl text-stone-700">
+      Everything below is grown or made at our farm in IIUM Gombak.
+      Tap <strong>Order via WhatsApp</strong> on any item — a chat opens with your order
+      pre-filled, and you pick it up fresh at the farm.
+    </p>
+
+    <div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        products.map((product, index) => (
+          <ProductCard
+            product={product}
+            withJsonLd
+            loading={index < 3 ? 'eager' : 'lazy'}
+          />
+        ))
+      }
+    </div>
+
+    <p class="mt-8 text-sm text-stone-500">
+      Prices are in Malaysian Ringgit (RM). Availability follows the harvest — if
+      something is out of stock, ask us on WhatsApp when the next batch is coming.
+    </p>
+  </section>
+</BaseLayout>

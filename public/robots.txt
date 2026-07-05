@@ -1,0 +1,5 @@
+# TODO(S1-02): update Sitemap URL when the final custom domain is live
+User-agent: *
+Allow: /
+
+Sitemap: https://jauhar-hub.vercel.app/sitemap-index.xml

@@ -1,0 +1,146 @@
+---
+import { Image } from 'astro:assets';
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ProductCard from '../components/ProductCard.astro';
+import WhatsAppCta from '../components/WhatsAppCta.astro';
+import JsonLd from '../components/JsonLd.astro';
+import { SITE } from '../config';
+import hero from '../assets/hero.jpg';
+
+const featured = (await getCollection('products', ({ data }) => data.featured))
+  .sort((a, b) => a.data.order - b.data.order)
+  .slice(0, 3);
+
+// JSON-LD LocalBusiness (PRD §9.2) — data diambil dari config NAP tunggal.
+const localBusinessLd = {
+  '@type': 'LocalBusiness',
+  name: SITE.name,
+  image: new URL(hero.src, Astro.site).href,
+  url: Astro.site?.href,
+  telephone: `+${SITE.whatsapp}`,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: SITE.address.street,
+    addressLocality: SITE.address.locality,
+    addressRegion: SITE.address.region,
+    postalCode: SITE.address.postalCode,
+    addressCountry: SITE.address.country,
+  },
+  openingHoursSpecification: {
+    '@type': 'OpeningHoursSpecification',
+    dayOfWeek: SITE.hours.days,
+    opens: SITE.hours.opens,
+    closes: SITE.hours.closes,
+  },
+  sameAs: [SITE.socials.instagram, SITE.socials.facebook],
+};
+---
+
+<BaseLayout
+  title="Jauhar Urban Farming — Campus Urban Farm in Gombak"
+  description="Student-run urban farm at IIUM Gombak, Selangor. Fresh fertigation-grown cucumbers, pickles, and snacks — order via WhatsApp for campus pickup."
+>
+  <JsonLd data={localBusinessLd} />
+
+  <!-- Hero -->
+  <section class="bg-leaf-50">
+    <div class="mx-auto grid max-w-6xl items-center gap-8 px-4 py-12 lg:grid-cols-2 lg:py-20">
+      <div>
+        <p class="font-semibold text-leaf-600">IIUM Gombak · Selangor</p>
+        <h1 class="mt-2 text-4xl font-bold leading-tight text-leaf-950 sm:text-5xl">
+          Fresh produce, grown on campus
+        </h1>
+        <p class="mt-4 max-w-lg text-lg text-stone-700">
+          {SITE.tagline}. Since 2021 our student community has turned unused campus land
+          into productive fertigation beds — and everything we harvest can be yours.
+        </p>
+        <div class="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
+          <a
+            href="/products"
+            class="inline-flex min-h-11 w-full items-center justify-center rounded-xl bg-leaf-800 px-6 py-3.5 font-semibold text-white transition-colors hover:bg-leaf-900 sm:w-auto"
+          >
+            Browse our products
+          </a>
+          <WhatsAppCta size="lg" label="Chat on WhatsApp" />
+        </div>
+      </div>
+      <!-- Gambar LCP: eager + fetchpriority high (PRD §10.1) -->
+      <Image
+        src={hero}
+        alt="Fertigation beds full of cucumber plants at Jauhar Urban Farming, IIUM Gombak"
+        width={800}
+        height={450}
+        widths={[480, 800, 1200]}
+        sizes="(min-width: 1024px) 560px, 92vw"
+        loading="eager"
+        fetchpriority="high"
+        class="w-full rounded-2xl object-cover shadow-lg"
+      />
+    </div>
+  </section>
+
+  <!-- Produk unggulan -->
+  <section class="mx-auto max-w-6xl px-4 py-14">
+    <div class="flex items-end justify-between gap-4">
+      <div>
+        <h2 class="text-2xl font-bold text-leaf-950 sm:text-3xl">Fresh from the farm</h2>
+        <p class="mt-1 text-stone-600">Harvested to order, straight from our beds.</p>
+      </div>
+      <a href="/products" class="hidden min-h-11 shrink-0 items-center font-semibold text-leaf-700 hover:underline sm:inline-flex">
+        View all products →
+      </a>
+    </div>
+    <div class="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {featured.map((product) => <ProductCard product={product} />)}
+    </div>
+    <a href="/products" class="mt-6 inline-flex min-h-11 items-center font-semibold text-leaf-700 hover:underline sm:hidden">
+      View all products →
+    </a>
+  </section>
+
+  <!-- Cara order -->
+  <section class="bg-leaf-950 text-white">
+    <div class="mx-auto max-w-6xl px-4 py-14">
+      <h2 class="text-2xl font-bold sm:text-3xl">Ordering is simple</h2>
+      <ol class="mt-8 grid gap-8 sm:grid-cols-3">
+        <li class="flex gap-4">
+          <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-leaf-600 font-bold">1</span>
+          <div>
+            <p class="font-semibold">Pick your produce</p>
+            <p class="mt-1 text-sm text-leaf-200">Browse the catalogue and choose what you like.</p>
+          </div>
+        </li>
+        <li class="flex gap-4">
+          <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-leaf-600 font-bold">2</span>
+          <div>
+            <p class="font-semibold">Tap "Order via WhatsApp"</p>
+            <p class="mt-1 text-sm text-leaf-200">A chat opens with your order ready to send.</p>
+          </div>
+        </li>
+        <li class="flex gap-4">
+          <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-leaf-600 font-bold">3</span>
+          <div>
+            <p class="font-semibold">Pick up at the farm</p>
+            <p class="mt-1 text-sm text-leaf-200">Collect your order fresh at IIUM Gombak.</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- Teaser tentang kami -->
+  <section class="mx-auto max-w-6xl px-4 py-14">
+    <div class="rounded-2xl border border-leaf-100 bg-leaf-50 p-8 sm:p-10">
+      <h2 class="text-2xl font-bold text-leaf-950 sm:text-3xl">Grown by students, shared with everyone</h2>
+      <p class="mt-3 max-w-2xl text-stone-700">
+        Jauhar Urban Farming is a collaboration between the residents of Mahallah Halimah,
+        Siddiq, and Maryam at IIUM. What started as an empty plot in 2021 is now an
+        award-winning campus farm — and a place to learn where food really comes from.
+      </p>
+      <a href="/about" class="mt-4 inline-flex min-h-11 items-center font-semibold text-leaf-700 hover:underline">
+        Read our story →
+      </a>
+    </div>
+  </section>
+</BaseLayout>

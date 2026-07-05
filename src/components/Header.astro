@@ -1,0 +1,122 @@
+---
+import { SITE } from '../config';
+
+const navLinks = [
+  { href: '/', label: 'Home' },
+  { href: '/about', label: 'About' },
+  { href: '/products', label: 'Products' },
+  { href: '/gallery', label: 'Gallery' },
+  { href: '/contact', label: 'Contact' },
+];
+
+const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
+const isActive = (href: string) => currentPath === (href === '/' ? '/' : href);
+---
+
+<header class="sticky top-0 z-40 border-b border-leaf-100 bg-white/95 backdrop-blur">
+  <div class="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
+    <a href="/" class="flex min-h-11 items-center gap-2 font-bold text-leaf-800">
+      <svg viewBox="0 0 64 64" class="h-8 w-8" aria-hidden="true">
+        <circle cx="32" cy="32" r="30" fill="#2b5a27"></circle>
+        <path d="M32 48V30" stroke="#e0efdb" stroke-width="4" stroke-linecap="round"></path>
+        <path d="M32 34c0-8-6-14-14-14 0 8 6 14 14 14z" fill="#6baa5e"></path>
+        <path d="M32 28c0-7 5-12 12-12 0 7-5 12-12 12z" fill="#98c78d"></path>
+      </svg>
+      <span>{SITE.name}</span>
+    </a>
+
+    <!-- Navigasi desktop -->
+    <nav aria-label="Main" class="hidden md:block">
+      <ul class="flex items-center gap-1">
+        {
+          navLinks.map((link) => (
+            <li>
+              <a
+                href={link.href}
+                aria-current={isActive(link.href) ? 'page' : undefined}
+                class={`inline-flex min-h-11 items-center rounded-lg px-3 font-medium transition-colors hover:bg-leaf-50 hover:text-leaf-800 ${
+                  isActive(link.href) ? 'text-leaf-700' : 'text-stone-600'
+                }`}
+              >
+                {link.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <!-- Tombol hamburger (mobile) — target sentuh ≥44px (PRD §11.2) -->
+    <button
+      id="menu-toggle"
+      type="button"
+      class="inline-flex min-h-11 min-w-11 items-center justify-center rounded-lg text-stone-700 hover:bg-leaf-50 md:hidden"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+      aria-label="Open menu"
+    >
+      <svg id="icon-open" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" class="h-6 w-6" aria-hidden="true">
+        <line x1="4" x2="20" y1="6" y2="6"></line>
+        <line x1="4" x2="20" y1="12" y2="12"></line>
+        <line x1="4" x2="20" y1="18" y2="18"></line>
+      </svg>
+      <svg id="icon-close" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" class="hidden h-6 w-6" aria-hidden="true">
+        <path d="M18 6 6 18"></path>
+        <path d="m6 6 12 12"></path>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Menu mobile -->
+  <nav id="mobile-menu" aria-label="Main mobile" class="hidden border-t border-leaf-100 bg-white px-4 pb-4 pt-2 md:hidden">
+    <ul class="flex flex-col gap-1">
+      {
+        navLinks.map((link) => (
+          <li>
+            <a
+              href={link.href}
+              aria-current={isActive(link.href) ? 'page' : undefined}
+              class={`flex min-h-11 items-center rounded-lg px-3 font-medium hover:bg-leaf-50 ${
+                isActive(link.href) ? 'bg-leaf-50 text-leaf-700' : 'text-stone-700'
+              }`}
+            >
+              {link.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </nav>
+</header>
+
+<script>
+  // Mobile menu: toggle, tutup dengan tap di luar area menu & tombol Escape (PRD §11.2)
+  const toggle = document.getElementById('menu-toggle')!;
+  const menu = document.getElementById('mobile-menu')!;
+  const iconOpen = document.getElementById('icon-open')!;
+  const iconClose = document.getElementById('icon-close')!;
+
+  function setOpen(open: boolean) {
+    menu.classList.toggle('hidden', !open);
+    iconOpen.classList.toggle('hidden', open);
+    iconClose.classList.toggle('hidden', !open);
+    toggle.setAttribute('aria-expanded', String(open));
+    toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+  }
+
+  toggle.addEventListener('click', (event) => {
+    event.stopPropagation();
+    setOpen(menu.classList.contains('hidden'));
+  });
+
+  document.addEventListener('click', (event) => {
+    const target = event.target as Node;
+    if (!menu.classList.contains('hidden') && !menu.contains(target) && !toggle.contains(target)) {
+      setOpen(false);
+    }
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') setOpen(false);
+  });
+</script>
