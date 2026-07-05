@@ -51,4 +51,4 @@ Satu foto = satu file di `src/content/gallery/` dengan frontmatter: `image`, `al
 - [ ] Konfirmasi harga & daftar produk final (tim Business, S2-10)
 - [ ] Isi teks About dari hasil wawancara mitra (S1-05)
 - [ ] Nomor WhatsApp resmi + NAP final di `src/config.ts` (S1-06)
-- [ ] Link Instagram/Facebook resmi mitra di `src/config.ts`
+- [ ] Link Instagram resmi mitra di `src/config.ts` (mitra tidak memiliki Facebook)

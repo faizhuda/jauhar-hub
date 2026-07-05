@@ -25,7 +25,7 @@ const isActive = (href: string) => currentPath === (href === '/' ? '/' : href);
       <span>{SITE.name}</span>
     </a>
 
-    <!-- Navigasi desktop -->
+    {/* Navigasi desktop */}
     <nav aria-label="Main" class="hidden md:block">
       <ul class="flex items-center gap-1">
         {
@@ -46,7 +46,7 @@ const isActive = (href: string) => currentPath === (href === '/' ? '/' : href);
       </ul>
     </nav>
 
-    <!-- Tombol hamburger (mobile) — target sentuh ≥44px (PRD §11.2) -->
+    {/* Tombol hamburger (mobile), target sentuh ≥44px (PRD §11.2) */}
     <button
       id="menu-toggle"
       type="button"
@@ -67,7 +67,7 @@ const isActive = (href: string) => currentPath === (href === '/' ? '/' : href);
     </button>
   </div>
 
-  <!-- Menu mobile -->
+  {/* Menu mobile */}
   <nav id="mobile-menu" aria-label="Main mobile" class="hidden border-t border-leaf-100 bg-white px-4 pb-4 pt-2 md:hidden">
     <ul class="flex flex-col gap-1">
       {

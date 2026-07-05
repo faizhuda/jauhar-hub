@@ -33,10 +33,9 @@ export const SITE = {
     label: 'Monday – Friday, 8:00 AM – 5:00 PM',
   },
 
-  // TODO(S1-06): link sosial media resmi mitra.
+  // TODO(S1-06): link sosial media resmi mitra. Mitra hanya punya Instagram (tidak ada Facebook).
   socials: {
     instagram: 'https://instagram.com/jauharurbanfarming',
-    facebook: 'https://facebook.com/jauharurbanfarming',
   },
 
   // TODO(S3-02): ganti dengan embed URL pin lokasi kebun yang presisi.

@@ -7,14 +7,16 @@
 | **Tema KKN** | Urban Farming with IoT, Promotion, and Economic Empowerment |
 | **Divisi** | Teknis (dahulu Divisi IoT) |
 | **Repo** | `jauhar-hub` |
-| **Versi Dokumen** | 1.1 |
-| **Tanggal** | 5 Juli 2026 |
+| **Versi Dokumen** | 1.3 |
+| **Tanggal** | 6 Juli 2026 |
 | **Durasi Pelaksanaan** | 14 Juli – 11 Agustus 2026 (4 minggu) |
 | **Tim Teknis** | 1 dari 8 anggota (latar belakang Ilmu Komputer) |
 
 ---
 
 ## Catatan Perubahan
+
+**v1.3** — Update progress & konten (6 Juli 2026): (1) Build teknis pre-KKN **selesai**: 5 halaman + WhatsApp order + SEO on-site + structured data terbangun penuh dengan data dummy, lolos verifikasi lokal. Status detail di Section 3a dan [PLANNING.md](PLANNING.md) Section 0; (2) Sosial media mitra dikoreksi: **hanya Instagram**, mitra tidak memiliki Facebook (Section 9.3 disesuaikan); (3) Aturan copywriting: teks situs tidak menggunakan em dash; (4) Struktur repo Section 18 disinkronkan dengan implementasi aktual.
 
 **v1.2** — Penyesuaian saat implementasi awal (5 Juli 2026): (1) Bahasa konten & route halaman menggunakan **English** — `/about`, `/products`, `/gallery`, `/contact` — menggantikan route Indonesia di Section 18, menyesuaikan audiens utama warga IIUM Malaysia; (2) Tailwind dipasang sebagai **Tailwind CSS v4 via plugin Vite `@tailwindcss/vite`** karena integrasi `@astrojs/tailwind` sudah deprecated; (3) lokasi schema Content Collections mengikuti konvensi Astro terbaru: `src/content.config.ts` (bukan `src/content/config.ts`); (4) versi framework terpasang: Astro 7.
 
@@ -68,6 +70,20 @@ Meluncurkan website resmi Jauhar Urban Farming yang **live, lengkap kontennya, c
 - [ ] Minimal 1 sesi pelatihan resmi ke mitra: cara request update konten, cara membaca data analytics dasar
 - [ ] Dokumentasi lengkap diserahkan: source code, content guide, update guide, tersimpan di repo `jauhar-hub`
 
+### 3a. Status Implementasi (per 6 Juli 2026)
+
+Belum ada butir DoD yang bisa dicentang penuh karena website belum live di domain publik, tetapi fondasi teknisnya sudah selesai lebih cepat dari jadwal:
+
+**Sudah terbangun & terverifikasi lokal (dengan data dummy):**
+- 5 halaman inti + 404, English routes, build produksi bersih di Astro 7
+- Tombol "Order via WhatsApp" per produk dengan template pesan berisi nama produk, nomor terpusat di `src/config.ts`
+- SEO on-site: meta title/description unik per halaman, canonical, Open Graph/Twitter Card, `sitemap.xml`, `robots.txt`
+- JSON-LD `LocalBusiness` (Beranda) + `Product` ×6 (katalog), valid saat di-parse dari HTML build
+- Responsif mobile-first: tanpa horizontal scroll di 360px, target sentuh ≥44px, hamburger menu + lightbox teruji
+- Content Collections ber-schema Zod (6 produk, 8 foto galeri) + draft content guide & update guide
+
+**Sisa pekerjaan (rincian urutan di [PLANNING.md](PLANNING.md) Section 0):** deploy Vercel + custom domain, Google Business Profile, seluruh konten asli dari mitra (deadline 30 Juli), validasi eksternal (Rich Results Test, PageSpeed/CWV production), Analytics, Search Console, uji multi-perangkat, pelatihan mitra, dan serah terima.
+
 ---
 
 ## 4. Ruang Lingkup
@@ -101,21 +117,21 @@ Static site murni — tidak ada server, database, atau proses backend. Astro men
 │  → JSON-LD: LocalBusiness                     │
 └─────────────────────────────────────────────┘
 ┌─────────────────────────────────────────────┐
-│  Tentang Kami (/tentang)                     │
+│  Tentang Kami (/about)                      │
 │  Sejarah, visi-misi, tim pengelola            │
 └─────────────────────────────────────────────┘
 ┌─────────────────────────────────────────────┐
-│  Produk (/produk)                            │
+│  Produk (/products)                          │
 │  Katalog: foto, nama, harga, deskripsi        │
 │  Tombol "Pesan via WhatsApp" per item          │
 │  → JSON-LD: Product per item                  │
 └─────────────────────────────────────────────┘
 ┌─────────────────────────────────────────────┐
-│  Galeri (/galeri)                            │
+│  Galeri (/gallery)                           │
 │  Dokumentasi kegiatan & proses kebun          │
 └─────────────────────────────────────────────┘
 ┌─────────────────────────────────────────────┐
-│  Kontak (/kontak)                            │
+│  Kontak (/contact)                           │
 │  Lokasi (Maps embed), jam operasional,        │
 │  WhatsApp, sosial media                       │
 └─────────────────────────────────────────────┘
@@ -248,7 +264,7 @@ Format yang dipakai: **JSON-LD** dalam `<script type="application/ld+json">` —
 | **Google Business Profile** | Mulai **Minggu 1** | Verifikasi bisa makan waktu berhari-hari s.d. berminggu — kalau baru diurus Minggu 4, tidak akan aktif sebelum KKN selesai. Diurus tim non-teknis dengan pendampingan |
 | **Konsistensi NAP** | Sepanjang proyek | Name, Address, Phone di website harus **persis sama** dengan Google Business Profile & sosmed — beda format sedikit bisa membingungkan Google |
 | **Google Search Console** | Minggu 3–4 | Daftarkan domain, submit sitemap, minta indexing halaman utama |
-| Link dari sosmed mitra | Minggu 4 | Pasang link website di bio Instagram/Facebook Jauhar — sinyal awal + sumber traffic langsung |
+| Link dari sosmed mitra | Minggu 4 | Pasang link website di bio Instagram Jauhar (mitra tidak memiliki Facebook) — sinyal awal + sumber traffic langsung |
 
 ### 9.4 Ekspektasi Realistis
 
@@ -432,37 +448,44 @@ Dikerjakan **hanya jika** Definition of Done di Section 3 sudah tercapai lebih c
 
 **Nama repo:** `jauhar-hub`
 
-**Struktur project (Astro):**
+**Struktur project (Astro) — sesuai implementasi aktual (v1.3):**
 
 ```
 jauhar-hub/
 ├── src/
 │   ├── pages/
-│   │   ├── index.astro          # Beranda
-│   │   ├── tentang.astro
-│   │   ├── produk.astro
-│   │   ├── galeri.astro
-│   │   └── kontak.astro
+│   │   ├── index.astro          # Beranda (JSON-LD LocalBusiness)
+│   │   ├── about.astro
+│   │   ├── products.astro       # katalog (JSON-LD Product per item)
+│   │   ├── gallery.astro        # grid + lightbox <dialog>
+│   │   ├── contact.astro        # Maps embed lazy, NAP, jam operasional
+│   │   └── 404.astro
 │   ├── layouts/
-│   │   └── BaseLayout.astro     # <head> bersama: meta, OG tags, JSON-LD helper
+│   │   └── BaseLayout.astro     # <head> bersama: meta, canonical, OG/Twitter
 │   ├── components/
-│   │   ├── Header.astro
+│   │   ├── Header.astro         # nav + hamburger menu mobile
 │   │   ├── Footer.astro
-│   │   ├── ProductCard.astro    # termasuk tombol WhatsApp + JSON-LD Product
-│   │   └── ...
+│   │   ├── ProductCard.astro    # foto, harga MYR, tombol WhatsApp, JSON-LD
+│   │   ├── WhatsAppCta.astro    # tombol order (link wa.me + template pesan)
+│   │   └── JsonLd.astro         # helper structured data
+│   ├── config.ts                # SATU sumber kebenaran: nomor WA, NAP, jam, sosmed
+│   ├── content.config.ts        # schema Zod koleksi products & gallery
 │   ├── content/
-│   │   ├── config.ts            # schema Zod untuk koleksi produk & galeri
-│   │   ├── produk/              # 1 file .md/.json per produk
-│   │   └── galeri/
+│   │   ├── products/            # 1 file .md per produk (6 dummy)
+│   │   └── gallery/             # 1 file .md per foto (8 dummy)
+│   ├── styles/global.css        # Tailwind 4 + palet brand "leaf"
 │   └── assets/                  # gambar sumber (dioptimasi otomatis saat build)
 ├── public/
 │   ├── robots.txt
 │   └── favicon.svg
+├── scripts/
+│   └── generate-placeholders.mjs # generator gambar dummy (sementara pra-konten asli)
 ├── docs/
-│   ├── content-guide.md
-│   ├── update-guide.md
-│   └── training-notes.md
-├── astro.config.mjs             # integrasi: tailwind, sitemap
+│   ├── content-guide.md         # panduan isi konten (draft)
+│   ├── update-guide.md          # panduan update & serah terima (draft)
+│   └── training-notes.md        # (dibuat di Sprint 4)
+├── astro.config.mjs             # site URL, integrasi sitemap, plugin Tailwind
+├── PLANNING.md                  # sprint planning end-to-end + status progress
 └── README.md                    # overview proyek + link ke PRD ini
 ```
 

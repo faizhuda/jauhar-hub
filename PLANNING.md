@@ -2,12 +2,40 @@
 
 | | |
 |---|---|
-| **Referensi** | [PRD.md](PRD.md) v1.1 (5 Juli 2026) — sumber kebenaran scope & Definition of Done |
+| **Referensi** | [PRD.md](PRD.md) v1.3 — sumber kebenaran scope & Definition of Done |
 | **Konteks** | KKNT Inovasi IPB Internasional × Jauhar Urban Farming, IIUM Gombak, Selangor |
 | **Pelaksanaan** | Selasa 14 Juli – Selasa 11 Agustus 2026 (29 hari di lokasi) |
 | **Pra-KKN** | 5 – 13 Juli 2026 (Sprint 0, dikerjakan dari Indonesia) |
 | **Tim** | 8 orang — 1 Web Lead (Faiz, Ilkom) + 7 anggota non-teknis |
-| **Catatan penting** | Proker IoT & Telegram Bot pada Proposal **tidak dilaksanakan**. Website (dahulu "backup proker" di Proposal §3.3) kini menjadi **proker teknis utama** dengan scope penuh sesuai PRD v1.1 |
+| **Status** | 🟢 Build teknis pre-KKN selesai (lihat Section 0) |
+| **Catatan penting** | Proker IoT & Telegram Bot pada Proposal **tidak dilaksanakan**. Website (dahulu "backup proker" di Proposal §3.3) kini menjadi **proker teknis utama** dengan scope penuh sesuai PRD |
+
+---
+
+## 0. Status Progress (update 6 Juli 2026)
+
+Website 5 halaman sudah terbangun penuh dengan data dummy dan lolos verifikasi lokal: build produksi bersih (Astro 7), SEO on-site lengkap, JSON-LD valid, responsif teruji di 360px. Pekerjaan teknis Sprint 0 sampai sebagian besar Sprint 2–3 selesai lebih cepat dari jadwal, sehingga fokus KKN nanti bergeser ke jalur konten & mitra, deployment, dan validasi eksternal.
+
+### ✅ Sudah selesai (pre-KKN)
+
+| Task | Cakupan | Catatan |
+|---|---|---|
+| S0-01, S0-02*, S0-04, S0-08 | Scaffold & fondasi | Astro 7 + Tailwind 4 + sitemap; schema Zod `products`/`gallery` + 6 produk & 8 foto dummy; template pesan WA di `src/config.ts`. *Bagian Vercel dari S0-02 masih menunggu (lihat daftar berikutnya) |
+| S1-08, S1-09, S1-10 | Layout & navigasi | BaseLayout (meta/OG/canonical) + Header/Footer; Content Collections di `src/content.config.ts`; hamburger menu teruji (tap di luar + Escape) |
+| S2-01 s.d. S2-06 | Halaman inti + WA order | Home/About/Products lengkap (data dummy); tombol WA per produk ≥44px, full-width mobile; JSON-LD Product ×6; tanpa horizontal scroll di 360px |
+| S3-01, S3-02, S3-04, S3-05, S3-07 | Galeri, Kontak, SEO | Gallery + lightbox `<dialog>` vanilla; Contact + Maps lazy; meta unik ≤60/≤155 per halaman; JSON-LD LocalBusiness; robots.txt + sitemap 5 halaman |
+| S3-11 (draft) | Dokumentasi | `docs/content-guide.md` & `docs/update-guide.md` versi stub |
+
+Keputusan yang sudah diambil: konten & route English (PRD v1.2); sosmed resmi mitra **hanya Instagram**, tidak ada Facebook; copywriting situs tanpa em dash (PRD v1.3).
+
+### ⏭️ Berikutnya (urutan eksekusi)
+
+1. **Hubungkan repo ke Vercel** + auto-deploy dari `main` (sisa S0-02/S1-01), lalu audit PageSpeed baseline (S1-12)
+2. **Beli domain** + update URL di `astro.config.mjs`, `src/config.ts`, `public/robots.txt` (S1-02)
+3. **Google Business Profile** mulai Hari 1 KKN, 14 Juli (S1-03)
+4. **Seluruh jalur konten & mitra**: wawancara profil (S1-05), NAP + nomor WA resmi (S1-06), foto asli (S1-07, S2-08), harga final (S1-11, S2-10), copywriting final (S2-07), konten 100% masuk 30 Juli (S3-03)
+5. **Validasi eksternal setelah live**: Rich Results Test (S3-06), CWV/PageSpeed production (S3-08, S4-04)
+6. **Menjelang & saat launch**: Analytics (S3-09), Search Console (S4-02), uji multi-perangkat (S4-03), pelatihan + dokumentasi final + serah terima (S4-06 s.d. S4-11)
 
 ---
 
@@ -93,7 +121,7 @@
 | S1-06 | **Finalisasi NAP resmi** (Name, Address, Phone) + jam operasional + nomor WA order — satu sumber kebenaran, dipakai konsisten di website, GBP, dan sosmed | LI | E7 | 3–5 | NAP terdokumentasi; nomor WA masuk sebagai **satu variabel config terpusat** |
 | S1-07 | Sesi foto #1: produk (mentimun segar, acar, keripik) + dokumentasi kebun | FV | E3 | 3–7 | Foto rasio seragam, ter-resize ≤1600px, terorganisir per folder |
 | S1-08 | BaseLayout (`<head>` bersama: meta, OG, viewport) + Header + Footer + routing 5 halaman skeleton | WL | E2 | 3–7 | 5 URL hidup di preview, navigasi jalan, semantic HTML |
-| S1-09 | Content Collections final di repo + data dummy ber-schema | WL | E3 | 3–7 | `src/content/config.ts` + koleksi `produk/` & `galeri/` build lolos |
+| S1-09 | Content Collections final di repo + data dummy ber-schema | WL | E3 | 3–7 | `src/content.config.ts` + koleksi `products/` & `gallery/` build lolos |
 | S1-10 | Mobile menu (hamburger, Astro Island `client:visible`, bisa ditutup tap di luar) | WL | E2 | 6–7 | Berfungsi di layar 360px |
 | S1-11 | Riset harga kompetitor produk sejenis | BA | E3 | 3–7 | Rekomendasi harga untuk katalog |
 | S1-12 | Audit PageSpeed #1 (Jumat) — baseline skeleton | WL | E8 | Jumat | Skor baseline tercatat |
@@ -161,7 +189,7 @@ Stretch (Decap CMS / blog — PRD §17) **hanya** dikerjakan jika saat gate ini:
 | S4-02 | **Google Search Console**: verifikasi domain, submit sitemap, request indexing 5 halaman | WL | E7 | 1–2 | Sitemap ter-submit; status indexing terpantau |
 | S4-03 | **Uji final multi-perangkat** (matrix di Section 9): Android kelas menengah + koneksi 4G, iPhone/simulator, tablet/landscape, desktop 1366 & 1920 | Semua (perangkat masing-masing) | E9 | 2–3 | Checklist per perangkat lolos semua |
 | S4-04 | Audit PageSpeed **final di production** | WL | E8 | 2–3 | CWV hijau + Lighthouse >90 di domain final, ter-screenshot untuk laporan |
-| S4-05 | Pasang link website di bio Instagram/Facebook mitra | LI | E7 | 2–4 | Link aktif |
+| S4-05 | Pasang link website di bio Instagram mitra (mitra tidak memiliki Facebook) | LI | E7 | 2–4 | Link aktif |
 | S4-06 | Finalisasi dokumentasi: `docs/content-guide.md`, `docs/update-guide.md`, `docs/training-notes.md`, README | WL + KC | E10 | 3–5 | Lengkap di repo; termasuk **tanggal expired domain + reminder perpanjangan** |
 | S4-07 | **Sesi pelatihan resmi mitra** (≥1 sesi): cara request update konten, alur edit via GitHub → auto-deploy Vercel, cara baca analytics dasar | WL + LI | E10 | 5–6 | Terdokumentasi (foto + notulen) untuk laporan KKN |
 | S4-08 | Laporan analytics awal (data masa uji) | WL + BA | E10 | 6–7 | Ringkasan pengunjung untuk laporan akhir |
