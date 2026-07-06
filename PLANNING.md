@@ -2,7 +2,7 @@
 
 | | |
 |---|---|
-| **Referensi** | [PRD.md](PRD.md) v1.3 — sumber kebenaran scope & Definition of Done |
+| **Referensi** | [PRD.md](PRD.md) v1.4 — sumber kebenaran scope & Definition of Done |
 | **Konteks** | KKNT Inovasi IPB Internasional × Jauhar Urban Farming, IIUM Gombak, Selangor |
 | **Pelaksanaan** | Selasa 14 Juli – Selasa 11 Agustus 2026 (29 hari di lokasi) |
 | **Pra-KKN** | 5 – 13 Juli 2026 (Sprint 0, dikerjakan dari Indonesia) |
@@ -26,7 +26,7 @@ Website 5 halaman sudah terbangun penuh dengan data dummy dan lolos verifikasi l
 | S3-01, S3-02, S3-04, S3-05, S3-07 | Galeri, Kontak, SEO | Gallery + lightbox `<dialog>` vanilla; Contact + Maps lazy; meta unik ≤60/≤155 per halaman; JSON-LD LocalBusiness; robots.txt + sitemap 5 halaman |
 | S3-11 (draft) | Dokumentasi | `docs/content-guide.md` & `docs/update-guide.md` versi stub |
 
-Keputusan yang sudah diambil: konten & route English (PRD v1.2); sosmed resmi mitra **hanya Instagram**, tidak ada Facebook; copywriting situs tanpa em dash (PRD v1.3); UI direvitalisasi mengikuti design system editorial dari "Revitalisasi UI & Design.txt" (6 Juli 2026): palet Material 3 hijau (#001803 primary, #ccee94 lime), tipografi Libre Caslon Text (serif display) + Hanken Grotesk (sans body), sudut tajam, label caps. Icon font & CDN Tailwind pada mockup diganti SVG inline + Tailwind ter-compile demi Core Web Vitals.
+Keputusan yang sudah diambil: konten & route English (PRD v1.2); sosmed resmi mitra **hanya Instagram**, tidak ada Facebook; copywriting situs tanpa em dash (PRD v1.3); UI memakai design system editorial (PRD v1.4): palet Material 3 hijau (#001803 primary, #ccee94 lime), tipografi Libre Caslon Text (serif display) + Hanken Grotesk (sans body), sudut tajam, label caps, token terpusat di `src/styles/global.css`. Demi Core Web Vitals, mockup referensi diadaptasi: icon font & CDN Tailwind diganti SVG inline + Tailwind ter-compile, tanpa `bg-fixed`.
 
 ### ⏭️ Berikutnya (urutan eksekusi)
 

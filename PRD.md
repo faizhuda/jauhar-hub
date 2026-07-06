@@ -7,7 +7,7 @@
 | **Tema KKN** | Urban Farming with IoT, Promotion, and Economic Empowerment |
 | **Divisi** | Teknis (dahulu Divisi IoT) |
 | **Repo** | `jauhar-hub` |
-| **Versi Dokumen** | 1.3 |
+| **Versi Dokumen** | 1.4 |
 | **Tanggal** | 6 Juli 2026 |
 | **Durasi Pelaksanaan** | 14 Juli – 11 Agustus 2026 (4 minggu) |
 | **Tim Teknis** | 1 dari 8 anggota (latar belakang Ilmu Komputer) |
@@ -15,6 +15,8 @@
 ---
 
 ## Catatan Perubahan
+
+**v1.4** — Revitalisasi UI (6 Juli 2026): seluruh halaman diadopsikan ke design system editorial: palet Material 3 hijau (primary `#001803`, aksen lime `#ccee94`, skala surface/outline lengkap), tipografi **Libre Caslon Text** (serif, display/headline) + **Hanken Grotesk** (sans, body/label caps), sudut tajam, label uppercase. Token design terpusat di `src/styles/global.css` (`@theme`). Demi Core Web Vitals, mockup referensi diadaptasi, bukan disalin mentah: tanpa CDN Tailwind runtime, tanpa icon font (SVG inline), tanpa `bg-fixed`, gambar tetap lewat pipeline `astro:assets`. Rasio foto produk di Section 11.3 disesuaikan ke potret 4:5. File mockup referensi tidak disimpan di repo.
 
 **v1.3** — Update progress & konten (6 Juli 2026): (1) Build teknis pre-KKN **selesai**: 5 halaman + WhatsApp order + SEO on-site + structured data terbangun penuh dengan data dummy, lolos verifikasi lokal. Status detail di Section 3a dan [PLANNING.md](PLANNING.md) Section 0; (2) Sosial media mitra dikoreksi: **hanya Instagram**, mitra tidak memiliki Facebook (Section 9.3 disesuaikan); (3) Aturan copywriting: teks situs tidak menggunakan em dash; (4) Struktur repo Section 18 disinkronkan dengan implementasi aktual.
 
@@ -76,6 +78,7 @@ Belum ada butir DoD yang bisa dicentang penuh karena website belum live di domai
 
 **Sudah terbangun & terverifikasi lokal (dengan data dummy):**
 - 5 halaman inti + 404, English routes, build produksi bersih di Astro 7
+- UI design system editorial diterapkan penuh (v1.4): palet Material 3 hijau, tipografi serif + sans, token terpusat di `src/styles/global.css`
 - Tombol "Order via WhatsApp" per produk dengan template pesan berisi nama produk, nomor terpusat di `src/config.ts`
 - SEO on-site: meta title/description unik per halaman, canonical, Open Graph/Twitter Card, `sitemap.xml`, `robots.txt`
 - JSON-LD `LocalBusiness` (Beranda) + `Product` ×6 (katalog), valid saat di-parse dari HTML build
@@ -179,7 +182,7 @@ Static site murni — tidak ada server, database, atau proses backend. Astro men
 | Sitemap | `@astrojs/sitemap` | Auto-generate saat build |
 | Hosting | **Vercel** (auto-deploy dari GitHub, gratis, SSL otomatis) | |
 | Version control | GitHub — repo `jauhar-hub` | |
-| Font | Google Fonts (subset, `font-display: swap`) | |
+| Font | Google Fonts: **Libre Caslon Text** (serif, display/headline) + **Hanken Grotesk** (sans, body/label), hanya weight 400 & 700, `font-display: swap` | Bagian dari design system editorial (v1.4) |
 | Icon | Lucide Icons (SVG inline, bukan icon font) | Icon font memuat seluruh set; SVG inline hanya yang terpakai |
 | Form kontak *(opsional)* | Formspree / Web3Forms (gratis, tanpa backend sendiri) | |
 | Analytics | Vercel Analytics atau Google Analytics | |
@@ -300,7 +303,7 @@ Target terukur: **Core Web Vitals hijau di mobile** — LCP < 2.5s, CLS < 0.1, I
 
 | Teknik | Implementasi |
 |---|---|
-| Font subset | Muat hanya weight yang dipakai (misal 400, 600, 700) — bukan seluruh keluarga font |
+| Font subset | Muat hanya weight yang dipakai (400 dan 700 untuk kedua keluarga font) — bukan seluruh keluarga font |
 | `font-display: swap` | Teks langsung tampil dengan font fallback selagi webfont dimuat — tidak ada layar kosong |
 | Preconnect | `<link rel="preconnect">` ke Google Fonts origin |
 | SVG inline untuk icon | Hanya icon terpakai yang dimuat, bisa di-style via CSS, tanpa request font tambahan |
@@ -340,7 +343,7 @@ Asumsi dasar: **mayoritas pengunjung datang dari HP** (link dibagikan via WhatsA
 
 - Ukuran font body minimal **16px** — di bawah itu iOS Safari melakukan auto-zoom saat form di-tap dan teks sulit dibaca
 - Line-height 1.5–1.7 untuk paragraf
-- Gambar produk rasio konsisten (misal 4:3 atau 1:1 seragam) — grid tidak "loncat-loncat"
+- Gambar produk rasio konsisten — kartu katalog memakai potret **4:5** seragam (foto 1:1 juga aman, di-crop otomatis oleh `object-cover`); galeri **4:3** — grid tidak "loncat-loncat"
 - Tabel (jika ada) dibungkus container `overflow-x: auto` — bukan memaksa layout pecah
 
 ### 11.4 Pengujian
@@ -473,7 +476,7 @@ jauhar-hub/
 │   ├── content/
 │   │   ├── products/            # 1 file .md per produk (6 dummy)
 │   │   └── gallery/             # 1 file .md per foto (8 dummy)
-│   ├── styles/global.css        # Tailwind 4 + palet brand "leaf"
+│   ├── styles/global.css        # design tokens: palet M3 hijau + skala tipografi editorial
 │   └── assets/                  # gambar sumber (dioptimasi otomatis saat build)
 ├── public/
 │   ├── robots.txt

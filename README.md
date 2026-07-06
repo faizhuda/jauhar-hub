@@ -9,8 +9,11 @@ pemesanan via WhatsApp. Dibangun oleh tim KKNT Inovasi IPB University × IIUM 20
 
 - [Astro](https://astro.build) 7 (fully static, zero-JS by default)
 - Tailwind CSS 4 (via `@tailwindcss/vite`)
+- Design system editorial: palet Material 3 hijau + tipografi Libre Caslon Text (serif)
+  dan Hanken Grotesk (sans), token terpusat di `src/styles/global.css`
 - Content Collections + Zod untuk data produk & galeri
 - `@astrojs/sitemap`, JSON-LD (`LocalBusiness` + `Product`)
+- Icon: SVG inline (tanpa icon font), gambar via pipeline `astro:assets`
 - Hosting: Vercel (auto-deploy dari branch `main`)
 
 ## Menjalankan
@@ -26,6 +29,7 @@ npm run placeholders   # regenerate gambar dummy (hanya selama konten asli belum
 
 ```
 src/config.ts              # SATU sumber kebenaran: nomor WhatsApp, NAP, jam, sosmed
+src/styles/global.css      # design tokens: warna & tipografi, ubah tampilan dari sini
 src/content/products/      # 1 file .md per produk (lihat docs/content-guide.md)
 src/content/gallery/       # 1 file .md per foto galeri
 src/assets/                # gambar sumber (maks. 1600px, dioptimasi saat build)

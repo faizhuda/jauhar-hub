@@ -19,6 +19,7 @@ Panduan teknis mengelola website Jauhar Urban Farming pasca-KKN.
 | Tambah foto galeri | 1 file di `src/content/gallery/` + foto di `src/assets/gallery/` |
 | **Ganti nomor WhatsApp** | `src/config.ts` → `whatsapp` (satu-satunya tempat) |
 | Ganti jam operasional / alamat / sosmed | `src/config.ts` |
+| Ganti warna atau font situs | `src/styles/global.css` → blok `@theme` (design tokens) |
 
 ## Menjalankan secara lokal (opsional, untuk developer)
 
