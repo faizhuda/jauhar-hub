@@ -13,12 +13,12 @@ interface Props {
 }
 
 const { product, withJsonLd = false, loading = 'lazy' } = Astro.props;
-const { name, price, unit, description, image, imageAlt, category, inStock } = product.data;
+const { name, price, unit, description, image, imageAlt, category, inStock, featured } = product.data;
 
 const categoryLabels: Record<typeof category, string> = {
-  fresh: 'Fresh produce',
-  processed: 'Farm-made',
-  experience: 'Experience',
+  fresh: 'Fresh Harvest',
+  processed: 'Farm Made',
+  experience: 'Learn & Grow',
 };
 
 const productLd = {
@@ -35,34 +35,50 @@ const productLd = {
 };
 ---
 
-<article class="flex flex-col overflow-hidden rounded-2xl border border-stone-200 bg-white shadow-sm">
-  <Image
-    src={image}
-    alt={imageAlt}
-    width={640}
-    height={640}
-    widths={[320, 480, 640]}
-    sizes="(min-width: 1024px) 300px, (min-width: 640px) 45vw, 92vw"
-    loading={loading}
-    class="aspect-square w-full object-cover"
-  />
-  <div class="flex flex-1 flex-col gap-2 p-4">
-    <div class="flex items-start justify-between gap-2">
-      <h3 class="text-lg font-semibold text-stone-900">{name}</h3>
-      <span class="shrink-0 rounded-full bg-leaf-50 px-2.5 py-1 text-xs font-medium text-leaf-700">
-        {categoryLabels[category]}
-      </span>
+<article class="group flex flex-col border border-outline-variant/40 bg-surface-container-lowest">
+  <div class="relative overflow-hidden">
+    <Image
+      src={image}
+      alt={imageAlt}
+      width={640}
+      height={800}
+      widths={[320, 480, 640]}
+      sizes="(min-width: 1024px) 400px, (min-width: 640px) 45vw, 92vw"
+      loading={loading}
+      class="aspect-[4/5] w-full object-cover transition-transform duration-700 group-hover:scale-105"
+    />
+    {
+      featured && inStock && (
+        <span class="absolute left-4 top-4 bg-primary px-3 py-1 text-label-caps uppercase text-on-primary">
+          In season
+        </span>
+      )
+    }
+    {
+      !inStock && (
+        <span class="absolute left-4 top-4 bg-surface-container-highest px-3 py-1 text-label-caps uppercase text-on-surface-variant">
+          Out of stock
+        </span>
+      )
+    }
+  </div>
+
+  <div class="flex flex-1 flex-col gap-2 p-6">
+    <span class="text-label-caps uppercase text-on-surface-variant">{categoryLabels[category]}</span>
+    <div class="flex items-start justify-between gap-4">
+      <h3 class="font-serif text-2xl text-primary">{name}</h3>
+      <p class="shrink-0 text-body-lg text-primary">
+        RM {price.toFixed(2)}
+        <span class="block text-right text-label-caps uppercase text-on-surface-variant">/ {unit}</span>
+      </p>
     </div>
-    <p class="font-semibold text-leaf-700">
-      RM {price.toFixed(2)} <span class="text-sm font-normal text-stone-500">/ {unit}</span>
-    </p>
-    <p class="text-sm text-stone-600">{description}</p>
-    <div class="mt-auto pt-3">
+    <p class="text-body-md text-on-surface-variant">{description}</p>
+    <div class="mt-auto pt-5">
       {
         inStock ? (
           <WhatsAppCta productName={name} />
         ) : (
-          <span class="inline-flex min-h-11 w-full items-center justify-center rounded-xl bg-stone-200 px-4 py-2.5 text-sm font-semibold text-stone-500 sm:w-auto">
+          <span class="btn w-full cursor-not-allowed border border-outline-variant bg-surface-container px-6 py-3 text-on-surface-variant sm:w-auto">
             Out of stock
           </span>
         )

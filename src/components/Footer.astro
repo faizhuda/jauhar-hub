@@ -5,61 +5,47 @@ const year = new Date().getFullYear();
 const fullAddress = `${SITE.address.street}, ${SITE.address.postalCode} ${SITE.address.locality}, ${SITE.address.region}, Malaysia`;
 ---
 
-<footer class="bg-leaf-950 text-leaf-100">
-  <div class="mx-auto grid max-w-6xl gap-10 px-4 py-12 sm:grid-cols-2 lg:grid-cols-3">
-    <div>
-      <p class="text-lg font-bold text-white">{SITE.name}</p>
-      <p class="mt-2 max-w-xs text-sm text-leaf-200">
+<footer class="bg-primary text-on-primary">
+  <div class="shell grid grid-cols-1 gap-12 py-16 md:grid-cols-4 md:gap-8 md:py-24">
+    <div class="md:col-span-2">
+      <p class="font-serif text-headline-md text-on-primary md:text-headline-lg">{SITE.name}</p>
+      <p class="mt-6 max-w-md text-body-md text-primary-fixed-dim">
         A student-run urban farm at IIUM Gombak growing fresh produce with fertigation,
         from our campus beds to your table.
       </p>
-      <div class="mt-4 flex gap-3">
-        <a
-          href={SITE.socials.instagram}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Instagram"
-          class="inline-flex min-h-11 min-w-11 items-center justify-center rounded-lg hover:bg-leaf-900"
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5" aria-hidden="true">
-            <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
-            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-            <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line>
-          </svg>
-        </a>
-      </div>
+      <p class="mt-8 text-body-md text-on-primary-container">
+        © {year} {SITE.name}. Built by the KKNT IPB University × IIUM 2026 team.
+      </p>
     </div>
 
-    <div>
-      <p class="font-semibold text-white">Visit us</p>
-      <address class="mt-2 text-sm not-italic text-leaf-200">
-        {fullAddress}
-      </address>
-      <p class="mt-2 text-sm text-leaf-200">{SITE.hours.label}</p>
+    <div class="flex flex-col gap-4">
+      <p class="text-label-caps uppercase text-on-primary/50">Explore</p>
+      <a href="/about" class="inline-flex min-h-11 items-center text-body-md text-primary-fixed-dim transition-colors duration-300 hover:text-secondary-fixed">About the farm</a>
+      <a href="/products" class="inline-flex min-h-11 items-center text-body-md text-primary-fixed-dim transition-colors duration-300 hover:text-secondary-fixed">Fresh produce &amp; snacks</a>
+      <a href="/gallery" class="inline-flex min-h-11 items-center text-body-md text-primary-fixed-dim transition-colors duration-300 hover:text-secondary-fixed">Life at the farm</a>
+      <a href="/contact" class="inline-flex min-h-11 items-center text-body-md text-primary-fixed-dim transition-colors duration-300 hover:text-secondary-fixed">Find &amp; contact us</a>
+    </div>
+
+    <div class="flex flex-col gap-4">
+      <p class="text-label-caps uppercase text-on-primary/50">Visit &amp; connect</p>
+      <address class="text-body-md not-italic text-primary-fixed-dim">{fullAddress}</address>
+      <p class="text-body-md text-primary-fixed-dim">{SITE.hours.label}</p>
       <a
         href={waOrderLink()}
         target="_blank"
         rel="noopener noreferrer"
-        class="mt-3 inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-white underline-offset-4 hover:underline"
+        class="inline-flex min-h-11 items-center text-body-md font-bold text-secondary-fixed transition-colors duration-300 hover:text-on-primary"
       >
-        Chat with us on WhatsApp
+        Chat on WhatsApp
+      </a>
+      <a
+        href={SITE.socials.instagram}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex min-h-11 items-center text-body-md text-primary-fixed-dim transition-colors duration-300 hover:text-secondary-fixed"
+      >
+        Instagram
       </a>
     </div>
-
-    <div>
-      <p class="font-semibold text-white">Explore</p>
-      <ul class="mt-2 space-y-1 text-sm">
-        <li><a href="/about" class="inline-flex min-h-11 items-center hover:text-white">About the farm</a></li>
-        <li><a href="/products" class="inline-flex min-h-11 items-center hover:text-white">Fresh produce &amp; snacks</a></li>
-        <li><a href="/gallery" class="inline-flex min-h-11 items-center hover:text-white">Life at the farm</a></li>
-        <li><a href="/contact" class="inline-flex min-h-11 items-center hover:text-white">Find &amp; contact us</a></li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="border-t border-leaf-900">
-    <p class="mx-auto max-w-6xl px-4 py-4 text-xs text-leaf-300">
-      © {year} {SITE.name}. Built by the KKNT IPB University × IIUM 2026 team.
-    </p>
   </div>
 </footer>

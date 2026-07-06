@@ -7,12 +7,14 @@ import WhatsAppCta from '../components/WhatsAppCta.astro';
 import JsonLd from '../components/JsonLd.astro';
 import { SITE } from '../config';
 import hero from '../assets/hero.jpg';
+import visionA from '../assets/gallery/fertigation-rows.jpg';
+import visionB from '../assets/gallery/seedling-nursery.jpg';
 
 const featured = (await getCollection('products', ({ data }) => data.featured))
   .sort((a, b) => a.data.order - b.data.order)
   .slice(0, 3);
 
-// JSON-LD LocalBusiness (PRD §9.2) — data diambil dari config NAP tunggal.
+// JSON-LD LocalBusiness (PRD §9.2), data diambil dari config NAP tunggal.
 const localBusinessLd = {
   '@type': 'LocalBusiness',
   name: SITE.name,
@@ -44,103 +46,142 @@ const localBusinessLd = {
   <JsonLd data={localBusinessLd} />
 
   {/* Hero */}
-  <section class="bg-leaf-50">
-    <div class="mx-auto grid max-w-6xl items-center gap-8 px-4 py-12 lg:grid-cols-2 lg:py-20">
-      <div>
-        <p class="font-semibold text-leaf-600">IIUM Gombak · Selangor</p>
-        <h1 class="mt-2 text-4xl font-bold leading-tight text-leaf-950 sm:text-5xl">
-          Fresh produce, grown on campus
-        </h1>
-        <p class="mt-4 max-w-lg text-lg text-stone-700">
-          {SITE.tagline}. Since 2021 our student community has turned unused campus land
-          into productive fertigation beds, and everything we harvest can be yours.
-        </p>
-        <div class="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
-          <a
-            href="/products"
-            class="inline-flex min-h-11 w-full items-center justify-center rounded-xl bg-leaf-800 px-6 py-3.5 font-semibold text-white transition-colors hover:bg-leaf-900 sm:w-auto"
-          >
-            Browse our products
-          </a>
-          <WhatsAppCta size="lg" label="Chat on WhatsApp" />
-        </div>
-      </div>
-      {/* Gambar LCP: eager + fetchpriority high (PRD §10.1) */}
+  <section class="relative flex min-h-[75vh] items-center overflow-hidden bg-surface-container-lowest md:min-h-[85vh]">
+    {/* Gambar LCP: eager + fetchpriority high (PRD §10.1) */}
+    <div class="absolute inset-0 opacity-15 lg:left-auto lg:right-0 lg:w-[45%] lg:opacity-100">
       <Image
         src={hero}
         alt="Fertigation beds full of cucumber plants at Jauhar Urban Farming, IIUM Gombak"
         width={800}
         height={450}
         widths={[480, 800, 1200]}
-        sizes="(min-width: 1024px) 560px, 92vw"
+        sizes="(min-width: 1024px) 45vw, 100vw"
         loading="eager"
         fetchpriority="high"
-        class="w-full rounded-2xl object-cover shadow-lg"
+        class="h-full w-full object-cover"
       />
+    </div>
+    <div class="shell relative z-10 py-20 md:py-28">
+      <div class="max-w-2xl lg:max-w-[calc(55%-2rem)]">
+        <p class="kicker mb-6">IIUM Gombak · Selangor</p>
+        <h1 class="mb-8 font-serif text-display-sm text-primary md:text-display-lg">
+          Fresh produce, grown on campus.
+        </h1>
+        <p class="mb-12 max-w-lg text-body-lg text-on-surface-variant">
+          {SITE.tagline}. Since 2021 our student community has turned unused campus land
+          into productive fertigation beds, and everything we harvest can be yours.
+        </p>
+        <div class="flex flex-col flex-wrap gap-4 sm:flex-row sm:items-center sm:gap-6">
+          <a href="/products" class="btn btn-secondary w-full sm:w-auto">
+            Browse our products
+          </a>
+          <WhatsAppCta variant="underline" label="Chat on WhatsApp" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* Visi singkat, latar lime */}
+  <section class="bg-secondary-container">
+    <div class="shell grid grid-cols-1 items-center gap-12 py-20 md:grid-cols-12 md:py-36">
+      <div class="order-2 md:order-1 md:col-span-5">
+        <p class="mb-6 inline-block border-b border-on-secondary-container/30 pb-2 text-label-caps uppercase text-on-secondary-container">
+          Grown by students
+        </p>
+        <h2 class="font-serif text-headline-md text-on-secondary-fixed md:text-headline-lg">
+          We are a student community reimagining what campus land can grow.
+        </h2>
+        <p class="mt-6 text-body-md text-on-secondary-container">
+          A collaboration between the residents of Mahallah Halimah, Siddiq, and Maryam
+          at IIUM, we grow crisp produce with water-efficient fertigation, benefiting
+          people, the campus, and the planet.
+        </p>
+        <a href="/about" class="btn btn-underline mt-8 border-on-secondary-fixed text-on-secondary-fixed">
+          Read our story
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4" aria-hidden="true">
+            <path d="M5 12h14"></path>
+            <path d="m12 5 7 7-7 7"></path>
+          </svg>
+        </a>
+      </div>
+      <div class="order-1 md:order-2 md:col-span-6 md:col-start-7">
+        <div class="grid grid-cols-2 gap-4">
+          <Image
+            src={visionA}
+            alt="Rows of cucumber plants growing on the fertigation system"
+            width={480}
+            height={480}
+            widths={[320, 480]}
+            sizes="(min-width: 768px) 320px, 45vw"
+            loading="lazy"
+            class="aspect-square w-full object-cover"
+          />
+          <Image
+            src={visionB}
+            alt="Trays of young cucumber seedlings in the nursery"
+            width={480}
+            height={480}
+            widths={[320, 480]}
+            sizes="(min-width: 768px) 320px, 45vw"
+            loading="lazy"
+            class="aspect-square w-full translate-y-6 object-cover md:translate-y-8"
+          />
+        </div>
+      </div>
     </div>
   </section>
 
   {/* Produk unggulan */}
-  <section class="mx-auto max-w-6xl px-4 py-14">
-    <div class="flex items-end justify-between gap-4">
+  <section class="shell py-20 md:py-36">
+    <div class="mb-12 flex flex-col justify-between gap-6 md:mb-16 md:flex-row md:items-end">
       <div>
-        <h2 class="text-2xl font-bold text-leaf-950 sm:text-3xl">Fresh from the farm</h2>
-        <p class="mt-1 text-stone-600">Harvested to order, straight from our beds.</p>
+        <p class="kicker mb-4">Fresh from the farm</p>
+        <h2 class="font-serif text-headline-md text-primary md:text-headline-lg">This week's harvest.</h2>
+        <p class="mt-4 max-w-md text-body-md text-on-surface-variant">
+          Harvested to order, straight from our beds to your table.
+        </p>
       </div>
-      <a href="/products" class="hidden min-h-11 shrink-0 items-center font-semibold text-leaf-700 hover:underline sm:inline-flex">
-        View all products →
+      <a href="/products" class="btn btn-underline self-start md:self-auto">
+        View all products
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4" aria-hidden="true">
+          <path d="M5 12h14"></path>
+          <path d="m12 5 7 7-7 7"></path>
+        </svg>
       </a>
     </div>
-    <div class="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+    <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
       {featured.map((product) => <ProductCard product={product} />)}
     </div>
-    <a href="/products" class="mt-6 inline-flex min-h-11 items-center font-semibold text-leaf-700 hover:underline sm:hidden">
-      View all products →
-    </a>
   </section>
 
   {/* Cara order */}
-  <section class="bg-leaf-950 text-white">
-    <div class="mx-auto max-w-6xl px-4 py-14">
-      <h2 class="text-2xl font-bold sm:text-3xl">Ordering is simple</h2>
-      <ol class="mt-8 grid gap-8 sm:grid-cols-3">
-        <li class="flex gap-4">
-          <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-leaf-600 font-bold">1</span>
+  <section class="bg-primary text-on-primary">
+    <div class="shell py-20 md:py-36">
+      <p class="mb-4 text-label-caps uppercase text-secondary-fixed">How it works</p>
+      <h2 class="font-serif text-headline-md md:text-headline-lg">Ordering is simple.</h2>
+      <ol class="mt-12 grid grid-cols-1 gap-10 sm:grid-cols-3 md:mt-16">
+        <li class="flex gap-5">
+          <span class="flex h-11 w-11 shrink-0 items-center justify-center bg-secondary-fixed font-serif text-xl text-on-secondary-fixed">1</span>
           <div>
-            <p class="font-semibold">Pick your produce</p>
-            <p class="mt-1 text-sm text-leaf-200">Browse the catalogue and choose what you like.</p>
+            <h3 class="font-serif text-xl">Pick your produce</h3>
+            <p class="mt-2 text-body-md text-primary-fixed-dim">Browse the catalogue and choose what you like.</p>
           </div>
         </li>
-        <li class="flex gap-4">
-          <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-leaf-600 font-bold">2</span>
+        <li class="flex gap-5">
+          <span class="flex h-11 w-11 shrink-0 items-center justify-center bg-secondary-fixed font-serif text-xl text-on-secondary-fixed">2</span>
           <div>
-            <p class="font-semibold">Tap "Order via WhatsApp"</p>
-            <p class="mt-1 text-sm text-leaf-200">A chat opens with your order ready to send.</p>
+            <h3 class="font-serif text-xl">Tap "Order via WhatsApp"</h3>
+            <p class="mt-2 text-body-md text-primary-fixed-dim">A chat opens with your order ready to send.</p>
           </div>
         </li>
-        <li class="flex gap-4">
-          <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-leaf-600 font-bold">3</span>
+        <li class="flex gap-5">
+          <span class="flex h-11 w-11 shrink-0 items-center justify-center bg-secondary-fixed font-serif text-xl text-on-secondary-fixed">3</span>
           <div>
-            <p class="font-semibold">Pick up at the farm</p>
-            <p class="mt-1 text-sm text-leaf-200">Collect your order fresh at IIUM Gombak.</p>
+            <h3 class="font-serif text-xl">Pick up at the farm</h3>
+            <p class="mt-2 text-body-md text-primary-fixed-dim">Collect your order fresh at IIUM Gombak.</p>
           </div>
         </li>
       </ol>
-    </div>
-  </section>
-
-  {/* Teaser tentang kami */}
-  <section class="mx-auto max-w-6xl px-4 py-14">
-    <div class="rounded-2xl border border-leaf-100 bg-leaf-50 p-8 sm:p-10">
-      <h2 class="text-2xl font-bold text-leaf-950 sm:text-3xl">Grown by students, shared with everyone</h2>
-      <p class="mt-3 max-w-2xl text-stone-700">
-        Jauhar Urban Farming is a collaboration between the residents of Mahallah Halimah,
-        Siddiq, and Maryam at IIUM. What started as an empty plot in 2021 is now an
-        award-winning campus farm and a place to learn where food really comes from.
-      </p>
-      <a href="/about" class="mt-4 inline-flex min-h-11 items-center font-semibold text-leaf-700 hover:underline">
-        Read our story →
-      </a>
     </div>
   </section>
 </BaseLayout>

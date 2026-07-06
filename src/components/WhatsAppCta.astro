@@ -3,31 +3,39 @@ import { waOrderLink } from '../config';
 
 /**
  * CTA utama seluruh situs (PRD F3, §11.2):
- * full-width di mobile, target sentuh ≥44px, membuka chat WA dengan pesan template.
+ * full-width di mobile, target sentuh >=44px, membuka chat WA dengan pesan template.
  */
 interface Props {
   /** Nama produk untuk template pesan; kosongkan untuk pesan umum. */
   productName?: string;
   label?: string;
+  /** Gaya tombol mengikuti design system editorial. */
+  variant?: 'primary' | 'secondary' | 'underline';
   /** Ukuran lebih besar untuk hero/kontak. */
   size?: 'md' | 'lg';
 }
 
-const { productName, label = 'Order via WhatsApp', size = 'md' } = Astro.props;
-const sizeClasses =
-  size === 'lg' ? 'px-6 py-3.5 text-base' : 'px-4 py-2.5 text-sm';
+const { productName, label = 'Order via WhatsApp', variant = 'primary', size = 'md' } = Astro.props;
+
+const variantClasses = {
+  primary: 'btn-primary',
+  secondary: 'btn-secondary',
+  underline: 'btn-underline',
+}[variant];
+
+const sizeClasses = size === 'lg' || variant === 'underline' ? '' : 'px-6 py-3';
 ---
 
 <a
   href={waOrderLink(productName)}
   target="_blank"
   rel="noopener noreferrer"
-  class={`inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-xl bg-leaf-600 font-semibold text-white transition-colors hover:bg-leaf-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-leaf-600 sm:w-auto ${sizeClasses}`}
+  class={`btn ${variantClasses} ${sizeClasses} w-full sm:w-auto`}
 >
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 24 24"
-    class="h-5 w-5 shrink-0 fill-current"
+    class="h-4 w-4 shrink-0 fill-current"
     aria-hidden="true"
   >
     <path

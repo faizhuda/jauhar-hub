@@ -26,7 +26,7 @@ Website 5 halaman sudah terbangun penuh dengan data dummy dan lolos verifikasi l
 | S3-01, S3-02, S3-04, S3-05, S3-07 | Galeri, Kontak, SEO | Gallery + lightbox `<dialog>` vanilla; Contact + Maps lazy; meta unik ≤60/≤155 per halaman; JSON-LD LocalBusiness; robots.txt + sitemap 5 halaman |
 | S3-11 (draft) | Dokumentasi | `docs/content-guide.md` & `docs/update-guide.md` versi stub |
 
-Keputusan yang sudah diambil: konten & route English (PRD v1.2); sosmed resmi mitra **hanya Instagram**, tidak ada Facebook; copywriting situs tanpa em dash (PRD v1.3).
+Keputusan yang sudah diambil: konten & route English (PRD v1.2); sosmed resmi mitra **hanya Instagram**, tidak ada Facebook; copywriting situs tanpa em dash (PRD v1.3); UI direvitalisasi mengikuti design system editorial dari "Revitalisasi UI & Design.txt" (6 Juli 2026): palet Material 3 hijau (#001803 primary, #ccee94 lime), tipografi Libre Caslon Text (serif display) + Hanken Grotesk (sans body), sudut tajam, label caps. Icon font & CDN Tailwind pada mockup diganti SVG inline + Tailwind ter-compile demi Core Web Vitals.
 
 ### ⏭️ Berikutnya (urutan eksekusi)
 

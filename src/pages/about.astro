@@ -1,5 +1,12 @@
 ---
+import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import hero from '../assets/hero.jpg';
+import storyImage from '../assets/gallery/community-planting.jpg';
+import breakImage from '../assets/gallery/fertigation-rows.jpg';
+import teamA from '../assets/gallery/student-workshop.jpg';
+import teamB from '../assets/gallery/morning-harvest.jpg';
+import teamC from '../assets/gallery/packing-day.jpg';
 
 // TODO(S1-05): seluruh teks halaman ini adalah DRAF DUMMY berbasis Proposal KKN.
 // Ganti dengan hasil wawancara profil mitra (deadline konten asli: 30 Juli, PLANNING.md §8).
@@ -9,76 +16,235 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   title="About Us"
   description="The story of Jauhar Urban Farming, a student-led fertigation farm at IIUM Gombak founded in 2021, growing food and community on campus land."
 >
-  <section class="mx-auto max-w-3xl px-4 py-12 sm:py-16">
-    <h1 class="text-3xl font-bold text-leaf-950 sm:text-4xl">About Jauhar Urban Farming</h1>
-
-    <h2 class="mt-10 text-2xl font-bold text-leaf-900">Our story</h2>
-    <p class="mt-3 text-stone-700">
-      Jauhar Urban Farming began in 2021, when students from Mahallah Halimah, Mahallah
-      Siddiq, and Mahallah Maryam at the International Islamic University Malaysia (IIUM)
-      decided that an unused plot of campus land could become something more. With support
-      from the university and external partners, the plot was transformed into productive
-      fertigation beds, with cucumbers as our signature crop.
-    </p>
-    <p class="mt-3 text-stone-700">
-      Today, the harvest feeds the campus community and beyond: we sell fresh cucumbers,
-      and we turn surplus harvest into value-added products like pickled cucumbers and
-      cucumber chips. Along the way, the farm has earned innovation and entrepreneurship
-      awards as a model of student-driven urban agriculture.
-    </p>
-
-    <h2 class="mt-10 text-2xl font-bold text-leaf-900">Vision &amp; mission</h2>
-    <p class="mt-3 text-stone-700">
-      <strong>Vision:</strong> to be a leading campus-based urban farm that proves fresh,
-      sustainable food can grow anywhere, even in the middle of a university.
-    </p>
-    <ul class="mt-3 list-disc space-y-2 pl-6 text-stone-700">
-      <li>Grow quality produce with resource-efficient fertigation methods.</li>
-      <li>Turn harvests into value-added products that support the community.</li>
-      <li>Open the farm as a learning space for students and visitors.</li>
-      <li>Build a farming community across the IIUM mahallahs and beyond.</li>
-    </ul>
-
-    <h2 class="mt-10 text-2xl font-bold text-leaf-900">What we do</h2>
-    <div class="mt-4 grid gap-4 sm:grid-cols-3">
-      <div class="rounded-2xl border border-leaf-100 bg-leaf-50 p-5">
-        <h3 class="font-semibold text-leaf-900">Grow</h3>
-        <p class="mt-1 text-sm text-stone-600">
-          Cucumbers and greens on drip-fed fertigation beds, tended by student volunteers.
-        </p>
-      </div>
-      <div class="rounded-2xl border border-leaf-100 bg-leaf-50 p-5">
-        <h3 class="font-semibold text-leaf-900">Make</h3>
-        <p class="mt-1 text-sm text-stone-600">
-          Small-batch pickles, chips, and other products made from our own harvest.
-        </p>
-      </div>
-      <div class="rounded-2xl border border-leaf-100 bg-leaf-50 p-5">
-        <h3 class="font-semibold text-leaf-900">Educate</h3>
-        <p class="mt-1 text-sm text-stone-600">
-          Farm tours, workshops, and planting days for students and the community.
+  {/* Hero */}
+  <section class="relative flex min-h-[60vh] items-center overflow-hidden bg-surface-container-low">
+    <div class="absolute inset-0">
+      <Image
+        src={hero}
+        alt=""
+        width={1200}
+        height={675}
+        widths={[640, 1200, 1600]}
+        sizes="100vw"
+        loading="eager"
+        fetchpriority="high"
+        class="h-full w-full object-cover opacity-50"
+      />
+      <div class="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-transparent"></div>
+    </div>
+    <div class="shell relative z-10 py-24 text-center md:py-36">
+      <div class="mx-auto max-w-3xl">
+        <h1 class="mb-8 font-serif text-display-sm text-primary md:text-display-lg">
+          Growing food, growing people.
+        </h1>
+        <p class="mx-auto max-w-2xl text-body-lg text-on-surface-variant">
+          Rooted in the heart of IIUM Gombak, Jauhar Urban Farming is more than an
+          agricultural initiative. It is a commitment to sustainable practices, student
+          empowerment, and a closer relationship between campus and nature.
         </p>
       </div>
     </div>
+  </section>
 
-    <h2 class="mt-10 text-2xl font-bold text-leaf-900">The people behind the farm</h2>
-    {/* TODO(S1-05): isi nama & peran pengelola asli dari hasil wawancara mitra. */}
-    <p class="mt-3 text-stone-700">
-      The farm is run by student caretakers from the three mahallahs, supported by
-      volunteers and advisors from IIUM. Come by during opening hours and say hello.
-      Someone is always tending the beds.
-    </p>
+  {/* Our story */}
+  <section class="shell py-20 md:py-36">
+    <div class="grid grid-cols-1 items-center gap-12 md:grid-cols-12">
+      <div class="md:col-span-5 md:col-start-2">
+        <p class="kicker mb-4">Our story</p>
+        <h2 class="mb-6 font-serif text-headline-md text-primary md:text-headline-lg">
+          From unused land to living farm.
+        </h2>
+        <p class="mb-6 text-body-md text-on-surface-variant">
+          Jauhar Urban Farming began in 2021, when students from Mahallah Halimah,
+          Mahallah Siddiq, and Mahallah Maryam at the International Islamic University
+          Malaysia (IIUM) decided that an empty plot of campus land could become
+          something more. With support from the university and external partners, the
+          plot was transformed into productive fertigation beds, with cucumbers as our
+          signature crop.
+        </p>
+        <p class="text-body-md text-on-surface-variant">
+          Today, the harvest feeds the campus community and beyond: we sell fresh
+          cucumbers, and we turn surplus harvest into value-added products like pickled
+          cucumbers and cucumber chips. Along the way, the farm has earned innovation
+          and entrepreneurship awards as a model of student-driven urban agriculture.
+        </p>
+      </div>
+      <div class="md:col-span-5 md:col-start-8">
+        <Image
+          src={storyImage}
+          alt="Community members planting seedlings together at the farm"
+          width={640}
+          height={800}
+          widths={[480, 640]}
+          sizes="(min-width: 768px) 480px, 92vw"
+          loading="lazy"
+          class="aspect-[4/5] w-full border border-outline-variant/30 object-cover"
+        />
+      </div>
+    </div>
+  </section>
 
-    <div class="mt-10 rounded-2xl bg-leaf-950 p-8 text-white">
-      <h2 class="text-xl font-bold">Come visit the farm</h2>
-      <p class="mt-2 text-sm text-leaf-200">
+  {/* Full-bleed image break */}
+  <section class="relative h-[40vh] min-h-72 bg-primary md:h-[55vh]">
+    <Image
+      src={breakImage}
+      alt="Rows of cucumber plants growing on the fertigation system at IIUM Gombak"
+      width={1600}
+      height={1200}
+      widths={[640, 1200, 1600]}
+      sizes="100vw"
+      loading="lazy"
+      class="h-full w-full object-cover opacity-60"
+    />
+  </section>
+
+  {/* Vision & mission bento */}
+  <section class="bg-surface-container-low">
+    <div class="shell py-20 md:py-36">
+      <div class="mb-12 text-center md:mb-16">
+        <p class="kicker mb-4">Purpose</p>
+        <h2 class="font-serif text-headline-md text-primary md:text-headline-lg">Guiding principles.</h2>
+      </div>
+      <div class="grid grid-cols-1 gap-8 md:grid-cols-2">
+        <div class="flex min-h-96 flex-col justify-between border border-primary-container bg-primary p-8 text-on-primary md:p-12">
+          <div>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mb-6 h-9 w-9 text-secondary-fixed" aria-hidden="true">
+              <path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"></path>
+              <circle cx="12" cy="12" r="3"></circle>
+            </svg>
+            <h3 class="mb-6 font-serif text-headline-md text-secondary-fixed">Our vision</h3>
+          </div>
+          <p class="text-body-lg text-primary-fixed-dim">
+            To be a leading model of campus-based urban agriculture, where sustainable
+            food production and ecological care are part of everyday student life.
+          </p>
+        </div>
+        <div class="flex min-h-96 flex-col justify-between border border-outline-variant bg-background p-8 md:p-12">
+          <div>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mb-6 h-9 w-9 text-primary" aria-hidden="true">
+              <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"></path>
+              <line x1="4" x2="4" y1="22" y2="15"></line>
+            </svg>
+            <h3 class="mb-6 font-serif text-headline-md text-primary">Our mission</h3>
+          </div>
+          <ul class="space-y-4 text-body-md text-on-surface-variant">
+            <li class="flex items-start gap-3">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mt-1 h-4 w-4 shrink-0 text-secondary" aria-hidden="true">
+                <path d="M21.801 10A10 10 0 1 1 17 3.335"></path>
+                <path d="m9 11 3 3L22 4"></path>
+              </svg>
+              Grow quality produce with water-efficient fertigation methods.
+            </li>
+            <li class="flex items-start gap-3">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mt-1 h-4 w-4 shrink-0 text-secondary" aria-hidden="true">
+                <path d="M21.801 10A10 10 0 1 1 17 3.335"></path>
+                <path d="m9 11 3 3L22 4"></path>
+              </svg>
+              Turn harvests into value-added products that support the community.
+            </li>
+            <li class="flex items-start gap-3">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mt-1 h-4 w-4 shrink-0 text-secondary" aria-hidden="true">
+                <path d="M21.801 10A10 10 0 1 1 17 3.335"></path>
+                <path d="m9 11 3 3L22 4"></path>
+              </svg>
+              Open the farm as a hands-on learning space for students and visitors.
+            </li>
+            <li class="flex items-start gap-3">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mt-1 h-4 w-4 shrink-0 text-secondary" aria-hidden="true">
+                <path d="M21.801 10A10 10 0 1 1 17 3.335"></path>
+                <path d="m9 11 3 3L22 4"></path>
+              </svg>
+              Build a farming community across the IIUM mahallahs and beyond.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* The team */}
+  <section class="shell py-20 md:py-36">
+    <div class="grid grid-cols-1 gap-12 md:grid-cols-12">
+      <div class="md:col-span-4 md:col-start-1">
+        <div class="md:sticky md:top-32">
+          <p class="kicker mb-4">The team</p>
+          <h2 class="mb-6 font-serif text-headline-md text-primary md:text-headline-lg">
+            The people behind the farm.
+          </h2>
+          <p class="mb-8 text-body-md text-on-surface-variant">
+            Jauhar Urban Farming is powered by student caretakers, university advisors,
+            and community volunteers. Come by during opening hours and say hello.
+            Someone is always tending the beds.
+          </p>
+          <a href="/contact" class="btn btn-underline">
+            Visit the farm
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4" aria-hidden="true">
+              <path d="M5 12h14"></path>
+              <path d="m12 5 7 7-7 7"></path>
+            </svg>
+          </a>
+        </div>
+      </div>
+      {/* TODO(S1-05): ganti dengan foto & nama pengelola asli dari hasil wawancara mitra. */}
+      <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 md:col-span-7 md:col-start-6">
+        <div class="group">
+          <Image
+            src={teamA}
+            alt="Students learning transplanting techniques during a farm workshop"
+            width={480}
+            height={480}
+            widths={[320, 480]}
+            sizes="(min-width: 640px) 320px, 92vw"
+            loading="lazy"
+            class="mb-4 aspect-square w-full border border-outline-variant/50 object-cover grayscale transition-all duration-700 group-hover:scale-[1.02] group-hover:grayscale-0"
+          />
+          <h3 class="font-serif text-xl text-primary">Student caretakers</h3>
+          <p class="mt-1 text-label-caps uppercase text-on-surface-variant">Mahallah Halimah · Siddiq · Maryam</p>
+        </div>
+        <div class="group sm:mt-12">
+          <Image
+            src={teamB}
+            alt="Volunteers harvesting fresh cucumbers early in the morning"
+            width={480}
+            height={480}
+            widths={[320, 480]}
+            sizes="(min-width: 640px) 320px, 92vw"
+            loading="lazy"
+            class="mb-4 aspect-square w-full border border-outline-variant/50 object-cover grayscale transition-all duration-700 group-hover:scale-[1.02] group-hover:grayscale-0"
+          />
+          <h3 class="font-serif text-xl text-primary">Community volunteers</h3>
+          <p class="mt-1 text-label-caps uppercase text-on-surface-variant">Harvest &amp; planting days</p>
+        </div>
+        <div class="group">
+          <Image
+            src={teamC}
+            alt="Team members packing fresh cucumbers for campus orders"
+            width={480}
+            height={480}
+            widths={[320, 480]}
+            sizes="(min-width: 640px) 320px, 92vw"
+            loading="lazy"
+            class="mb-4 aspect-square w-full border border-outline-variant/50 object-cover grayscale transition-all duration-700 group-hover:scale-[1.02] group-hover:grayscale-0"
+          />
+          <h3 class="font-serif text-xl text-primary">University support</h3>
+          <p class="mt-1 text-label-caps uppercase text-on-surface-variant">Advisors &amp; partners</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* CTA */}
+  <section class="bg-primary text-on-primary">
+    <div class="shell py-20 text-center md:py-28">
+      <h2 class="font-serif text-headline-md md:text-headline-lg">Come visit the farm.</h2>
+      <p class="mx-auto mt-4 max-w-xl text-body-md text-primary-fixed-dim">
         We love showing people around. Find us at IIUM Gombak, or book a farm tour.
       </p>
-      <div class="mt-4 flex flex-col gap-3 sm:flex-row">
-        <a href="/contact" class="inline-flex min-h-11 items-center justify-center rounded-xl bg-white px-5 font-semibold text-leaf-900 hover:bg-leaf-50">
+      <div class="mt-8 flex flex-col justify-center gap-4 sm:flex-row">
+        <a href="/contact" class="btn w-full border border-secondary-fixed bg-secondary-fixed px-8 py-4 text-on-secondary-fixed transition-colors hover:bg-transparent hover:text-secondary-fixed sm:w-auto">
           Find &amp; contact us
         </a>
-        <a href="/products" class="inline-flex min-h-11 items-center justify-center rounded-xl border border-leaf-400 px-5 font-semibold text-white hover:bg-leaf-900">
+        <a href="/products" class="btn w-full border border-on-primary/40 px-8 py-4 text-on-primary transition-colors hover:bg-on-primary/10 sm:w-auto">
           See what we grow
         </a>
       </div>
