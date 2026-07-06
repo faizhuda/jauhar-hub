@@ -34,7 +34,7 @@ Satu foto = satu file di `src/content/gallery/` dengan frontmatter: `image`, `al
 ## 3. Standar foto (PRD §10.1, §11.3)
 
 - **Resize maksimal 1600 px sisi terpanjang** sebelum masuk repo
-- Rasio seragam: **produk 1:1** (foto lain akan di-crop otomatis ke persegi), **galeri 4:3**
+- Rasio seragam: **produk & galeri 4:3** (foto 1:1 juga aman, di-crop otomatis dengan subjek di tengah)
 - Pencahayaan natural, latar bersih
 - Simpan di `src/assets/products/` atau `src/assets/gallery/` — format JPG
 - Mengganti foto dummy: timpa file dengan **nama yang sama persis**

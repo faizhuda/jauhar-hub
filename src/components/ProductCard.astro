@@ -41,11 +41,11 @@ const productLd = {
       src={image}
       alt={imageAlt}
       width={640}
-      height={640}
+      height={480}
       widths={[320, 480, 640]}
       sizes="(min-width: 1024px) 400px, (min-width: 640px) 45vw, 92vw"
       loading={loading}
-      class="aspect-square w-full object-cover transition-transform duration-700 group-hover:scale-105"
+      class="aspect-[4/3] w-full object-cover transition-transform duration-700 group-hover:scale-105"
     />
     {
       featured && inStock && (
@@ -63,17 +63,17 @@ const productLd = {
     }
   </div>
 
-  <div class="flex flex-1 flex-col gap-2 p-6">
+  <div class="flex flex-1 flex-col gap-2 p-5">
     <span class="text-label-caps uppercase text-on-surface-variant">{categoryLabels[category]}</span>
     <div class="flex items-start justify-between gap-4">
-      <h3 class="font-serif text-2xl text-primary">{name}</h3>
+      <h3 class="font-serif text-xl text-primary">{name}</h3>
       <p class="shrink-0 text-body-lg text-primary">
         RM {price.toFixed(2)}
         <span class="block text-right text-label-caps uppercase text-on-surface-variant">/ {unit}</span>
       </p>
     </div>
     <p class="text-body-md text-on-surface-variant">{description}</p>
-    <div class="mt-auto pt-5">
+    <div class="mt-auto pt-4">
       {
         inStock ? (
           <WhatsAppCta productName={name} />

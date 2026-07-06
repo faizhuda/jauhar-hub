@@ -2,7 +2,7 @@
 
 | | |
 |---|---|
-| **Referensi** | [PRD.md](PRD.md) v1.5 — sumber kebenaran scope & Definition of Done |
+| **Referensi** | [PRD.md](PRD.md) v1.6 — sumber kebenaran scope & Definition of Done |
 | **Konteks** | KKNT Inovasi IPB Internasional × Jauhar Urban Farming, IIUM Gombak, Selangor |
 | **Pelaksanaan** | Selasa 14 Juli – Selasa 11 Agustus 2026 (29 hari di lokasi) |
 | **Pra-KKN** | 5 – 13 Juli 2026 (Sprint 0, dikerjakan dari Indonesia) |
@@ -28,6 +28,8 @@ Website 5 halaman sudah terbangun penuh dengan data dummy dan lolos verifikasi l
 | S3-11 (draft) | Dokumentasi | `docs/content-guide.md` & `docs/update-guide.md` versi stub |
 
 Keputusan yang sudah diambil: konten & route English (PRD v1.2); sosmed resmi mitra **hanya Instagram**, tidak ada Facebook; copywriting situs tanpa em dash (PRD v1.3); UI memakai design system editorial (PRD v1.4): palet Material 3 hijau (#001803 primary, #ccee94 lime), tipografi Libre Caslon Text (serif display) + Hanken Grotesk (sans body), sudut tajam, label caps, token terpusat di `src/styles/global.css`. Demi Core Web Vitals, mockup referensi diadaptasi: icon font & CDN Tailwind diganti SVG inline + Tailwind ter-compile, tanpa `bg-fixed`.
+
+**Perbaikan v1.6 (skala responsif):** tipografi display/headline jadi fluid via `clamp()` mengikuti lebar viewport; padding section dipangkas menyeluruh; kartu produk 4:3 dan lebih padat; `min-height` paksa di kartu bento dihapus; offset dekoratif gambar dihapus. Hasil: hero + CTA dan setiap kartu tampil utuh satu layar, teruji di viewport efektif 1280×630 (display scaling 150%), 360×740, dan 1920×1080.
 
 **Perbaikan v1.5 (hasil feedback pengujian di preview Vercel):** grid Gallery diluruskan (hapus offset stagger); rasio gambar kartu produk diubah 4:5 → 1:1 (kartu 784px di 1080p sebelumnya menyembunyikan harga & CTA di bawah lipatan); hero Beranda dipadatkan (padding & margin dipangkas, `min-height` vh diganti nilai tetap moderat) sehingga tombol CTA tampil tanpa scroll bahkan di viewport efektif ~650px; token `display-lg` 80px → 72px; font pindah dari CDN Google Fonts ke self-hosted `@fontsource` untuk menghapus 2 request pihak ketiga yang me-render-block FCP.
 

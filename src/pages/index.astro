@@ -46,7 +46,7 @@ const localBusinessLd = {
   <JsonLd data={localBusinessLd} />
 
   {/* Hero: padding & tipografi dijaga ringkas agar CTA tampil tanpa scroll di viewport umum */}
-  <section class="relative flex min-h-[500px] items-center overflow-hidden bg-surface-container-lowest md:min-h-[560px]">
+  <section class="relative flex min-h-[420px] items-center overflow-hidden bg-surface-container-lowest md:min-h-[460px]">
     {/* Gambar LCP: eager + fetchpriority high (PRD §10.1) */}
     <div class="absolute inset-0 opacity-15 lg:left-auto lg:right-0 lg:w-[45%] lg:opacity-100">
       <Image
@@ -61,13 +61,13 @@ const localBusinessLd = {
         class="h-full w-full object-cover"
       />
     </div>
-    <div class="shell relative z-10 py-14 md:py-16">
+    <div class="shell relative z-10 py-10 md:py-12">
       <div class="max-w-2xl lg:max-w-[calc(55%-2rem)]">
         <p class="kicker mb-4">IIUM Gombak · Selangor</p>
-        <h1 class="mb-6 font-serif text-display-sm text-primary md:text-display-lg">
+        <h1 class="mb-5 font-serif text-display-sm text-primary md:text-display-lg">
           Fresh produce, grown on campus.
         </h1>
-        <p class="mb-8 max-w-lg text-body-lg text-on-surface-variant">
+        <p class="mb-7 max-w-lg text-body-lg text-on-surface-variant">
           {SITE.tagline}. Since 2021 our student community has turned unused campus land
           into productive fertigation beds, and everything we harvest can be yours.
         </p>
@@ -83,7 +83,7 @@ const localBusinessLd = {
 
   {/* Visi singkat, latar lime */}
   <section class="bg-secondary-container">
-    <div class="shell grid grid-cols-1 items-center gap-12 py-20 md:grid-cols-12 md:py-36">
+    <div class="shell grid grid-cols-1 items-center gap-10 py-14 md:grid-cols-12 md:py-20">
       <div class="order-2 md:order-1 md:col-span-5">
         <p class="mb-6 inline-block border-b border-on-secondary-container/30 pb-2 text-label-caps uppercase text-on-secondary-container">
           Grown by students
@@ -124,7 +124,7 @@ const localBusinessLd = {
             widths={[320, 480]}
             sizes="(min-width: 768px) 320px, 45vw"
             loading="lazy"
-            class="aspect-square w-full translate-y-6 object-cover md:translate-y-8"
+            class="aspect-square w-full object-cover"
           />
         </div>
       </div>
@@ -132,8 +132,8 @@ const localBusinessLd = {
   </section>
 
   {/* Produk unggulan */}
-  <section class="shell py-20 md:py-36">
-    <div class="mb-12 flex flex-col justify-between gap-6 md:mb-16 md:flex-row md:items-end">
+  <section class="shell py-14 md:py-20">
+    <div class="mb-8 flex flex-col justify-between gap-6 md:mb-10 md:flex-row md:items-end">
       <div>
         <p class="kicker mb-4">Fresh from the farm</p>
         <h2 class="font-serif text-headline-md text-primary md:text-headline-lg">This week's harvest.</h2>
@@ -156,10 +156,10 @@ const localBusinessLd = {
 
   {/* Cara order */}
   <section class="bg-primary text-on-primary">
-    <div class="shell py-20 md:py-36">
+    <div class="shell py-14 md:py-20">
       <p class="mb-4 text-label-caps uppercase text-secondary-fixed">How it works</p>
       <h2 class="font-serif text-headline-md md:text-headline-lg">Ordering is simple.</h2>
-      <ol class="mt-12 grid grid-cols-1 gap-10 sm:grid-cols-3 md:mt-16">
+      <ol class="mt-10 grid grid-cols-1 gap-8 sm:grid-cols-3">
         <li class="flex gap-5">
           <span class="flex h-11 w-11 shrink-0 items-center justify-center bg-secondary-fixed font-serif text-xl text-on-secondary-fixed">1</span>
           <div>

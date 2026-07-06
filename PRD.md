@@ -7,7 +7,7 @@
 | **Tema KKN** | Urban Farming with IoT, Promotion, and Economic Empowerment |
 | **Divisi** | Teknis (dahulu Divisi IoT) |
 | **Repo** | `jauhar-hub` |
-| **Versi Dokumen** | 1.5 |
+| **Versi Dokumen** | 1.6 |
 | **Tanggal** | 6 Juli 2026 |
 | **Durasi Pelaksanaan** | 14 Juli – 11 Agustus 2026 (4 minggu) |
 | **Tim Teknis** | 1 dari 8 anggota (latar belakang Ilmu Komputer) |
@@ -15,6 +15,8 @@
 ---
 
 ## Catatan Perubahan
+
+**v1.6** — Skala responsif terhadap viewport (6 Juli 2026): elemen masih terasa terlalu besar di layar dengan display scaling Windows (viewport efektif ±1280×630 CSS px pada monitor 1080p @150%), membuat section/kartu terpotong dan memaksa scroll di tengah konten. Perbaikan: (1) tipografi display & headline kini **fluid via `clamp()`**, menskala mengikuti lebar viewport (display 44–72px, bukan 72px tetap); (2) padding vertikal seluruh section dipangkas (dari `py-20/36` ke `py-12..14/16..20`); (3) rasio gambar kartu produk 1:1 → **4:3** dan padding kartu dipadatkan, kartu kini ±526px sehingga muat utuh dalam satu layar; (4) kartu Vision/Mission tidak lagi memakai `min-height` paksa, tinggi mengikuti konten; (5) offset dekoratif `translate-y`/stagger pada gambar (visi Beranda, tim About) dihapus agar grid rata; (6) hero semua halaman dipadatkan (`min-height` & padding turun). Terverifikasi di 360×740, 1280×630, dan 1920×1080: hero + CTA tampil utuh satu layar, kartu tidak terpotong, tanpa horizontal scroll.
 
 **v1.5** — Perbaikan responsivitas & performa (6 Juli 2026), berdasar feedback pengujian di browser nyata: (1) **Gallery**: hapus efek offset `translate-y-8` pada grid, menyebabkan kartu terlihat tidak sejajar — semua kartu kini rata; (2) **Kartu produk**: rasio gambar diubah dari potret 4:5 ke **1:1** karena di layar 1920×1080 satu kartu tingginya 784px, membuat harga & tombol pesan baru terlihat setelah scroll; (3) **Hero Beranda**: padding & jarak antar-elemen dipangkas, `min-height` diubah dari `75vh`/`85vh` (skala tak terkendali di viewport pendek) ke nilai tetap yang moderat, sehingga CTA "Browse our products" tampil tanpa scroll bahkan di viewport efektif ~650px (browser dengan toolbar/bookmark bar tebal); token `display-lg` diperkecil dari 80px ke 72px; (4) **Font self-hosted** via paket `@fontsource` (bukan lagi CDN Google Fonts) — menghapus 2 request pihak ketiga (`fonts.googleapis.com`, `fonts.gstatic.com`) yang sebelumnya me-render-block First Contentful Paint; font di-bundle bersama build, hanya subset latin, weight 400 & 700.
 
@@ -347,7 +349,7 @@ Asumsi dasar: **mayoritas pengunjung datang dari HP** (link dibagikan via WhatsA
 
 - Ukuran font body minimal **16px** — di bawah itu iOS Safari melakukan auto-zoom saat form di-tap dan teks sulit dibaca
 - Line-height 1.5–1.7 untuk paragraf
-- Gambar produk rasio konsisten — kartu katalog memakai **1:1** seragam (foto non-persegi otomatis di-crop oleh `object-cover`); galeri **4:3** — grid tidak "loncat-loncat"
+- Gambar produk rasio konsisten — kartu katalog menampilkan **4:3** seragam (foto sumber 1:1 atau 4:3 sama-sama aman, otomatis di-crop oleh `object-cover`); galeri **4:3** — grid tidak "loncat-loncat"
 - Tabel (jika ada) dibungkus container `overflow-x: auto` — bukan memaksa layout pecah
 
 ### 11.4 Pengujian
