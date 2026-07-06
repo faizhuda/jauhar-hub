@@ -37,7 +37,10 @@ Satu foto = satu file di `src/content/gallery/` dengan frontmatter: `image`, `al
 - Rasio seragam: **produk & galeri 4:3** (foto 1:1 juga aman, di-crop otomatis dengan subjek di tengah)
 - Pencahayaan natural, latar bersih
 - Simpan di `src/assets/products/` atau `src/assets/gallery/` — format JPG
-- Mengganti foto dummy: timpa file dengan **nama yang sama persis**
+- Mengganti foto: timpa file dengan **nama yang sama persis**. Foto saat ini adalah
+  stok Wikimedia Commons ([image-credits.md](image-credits.md)) — setelah menimpa
+  dengan foto asli, **hapus baris kreditnya** dari tabel tersebut dan sesuaikan
+  `alt`/`imageAlt` dengan isi foto baru
 
 ## 4. Menulis teks halaman
 
@@ -47,7 +50,8 @@ Satu foto = satu file di `src/content/gallery/` dengan frontmatter: `image`, `al
 
 ## 5. TODO konten asli (deadline 30 Juli — PLANNING.md §8)
 
-- [ ] Ganti seluruh foto dummy (`DUMMY PLACEHOLDER`) dengan foto asli
+- [ ] Ganti seluruh foto stok Wikimedia Commons dengan foto asli mitra — lalu bersihkan
+      [image-credits.md](image-credits.md) (foto CC BY/CC BY-SA wajib atribusi selama masih dipakai)
 - [ ] Konfirmasi harga & daftar produk final (tim Business, S2-10)
 - [ ] Isi teks About dari hasil wawancara mitra (S1-05)
 - [ ] Nomor WhatsApp resmi + NAP final di `src/config.ts` (S1-06)

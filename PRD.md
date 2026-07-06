@@ -7,14 +7,16 @@
 | **Tema KKN** | Urban Farming with IoT, Promotion, and Economic Empowerment |
 | **Divisi** | Teknis (dahulu Divisi IoT) |
 | **Repo** | `jauhar-hub` |
-| **Versi Dokumen** | 1.6 |
-| **Tanggal** | 6 Juli 2026 |
+| **Versi Dokumen** | 1.7 |
+| **Tanggal** | 7 Juli 2026 |
 | **Durasi Pelaksanaan** | 14 Juli – 11 Agustus 2026 (4 minggu) |
 | **Tim Teknis** | 1 dari 8 anggota (latar belakang Ilmu Komputer) |
 
 ---
 
 ## Catatan Perubahan
+
+**v1.7** — Arah desain Professional Luxury + foto asli (7 Juli 2026): (1) Design system berevolusi dari editorial minimal ke **Professional Luxury**: palet hijau dipertahankan, ditambah aksen emas antik/champagne (`--color-accent*`), kicker ber-hairline emas, tombol varian `btn-gold`/`btn-ghost-light`; (2) **Hero full-bleed "grande"** di semua halaman (52–88svh, scrim gradasi, tipografi display hingga 76px); (3) Micro-interactions: scroll-reveal fade-up (IntersectionObserver), parallax ringan ±4.5% (rAF), hover lift kartu, zoom foto lambat — semuanya hanya `opacity`/`transform` (CLS aman) dan nonaktif saat `prefers-reduced-motion: reduce`; (4) **Splash screen** branding ±1,6 detik, sekali per sesi tab (sessionStorage), murni CSS sehingga fail-safe tanpa JS; (5) Panel menu mobile mengikuti glassmorphism header (latar transparan di atas `bg-surface/80 + backdrop-blur`); (6) **Seluruh placeholder hijau diganti foto stok berlisensi bebas dari Wikimedia Commons** (CC0/PD/CC BY/CC BY-SA) — daftar sumber & kewajiban atribusi di `docs/image-credits.md`; `npm run placeholders` kini butuh flag `--force` agar foto tidak tertimpa; (7) Gambar hero diberi `quality={60}` untuk menekan bobot varian WebP terbesar (456→352 kB); alt text disinkronkan dengan isi foto baru. Terverifikasi: build bersih, tanpa horizontal scroll di 375px, tanpa error console, hamburger & lightbox berfungsi.
 
 **v1.6** — Skala responsif terhadap viewport (6 Juli 2026): elemen masih terasa terlalu besar di layar dengan display scaling Windows (viewport efektif ±1280×630 CSS px pada monitor 1080p @150%), membuat section/kartu terpotong dan memaksa scroll di tengah konten. Perbaikan: (1) tipografi display & headline kini **fluid via `clamp()`**, menskala mengikuti lebar viewport (display 44–72px, bukan 72px tetap); (2) padding vertikal seluruh section dipangkas (dari `py-20/36` ke `py-12..14/16..20`); (3) rasio gambar kartu produk 1:1 → **4:3** dan padding kartu dipadatkan, kartu kini ±526px sehingga muat utuh dalam satu layar; (4) kartu Vision/Mission tidak lagi memakai `min-height` paksa, tinggi mengikuti konten; (5) offset dekoratif `translate-y`/stagger pada gambar (visi Beranda, tim About) dihapus agar grid rata; (6) hero semua halaman dipadatkan (`min-height` & padding turun). Terverifikasi di 360×740, 1280×630, dan 1920×1080: hero + CTA tampil utuh satu layar, kartu tidak terpotong, tanpa horizontal scroll.
 
@@ -82,7 +84,8 @@ Website sudah live di preview Vercel (`jauhar-hub.vercel.app`), fondasi teknisny
 
 **Sudah terbangun & terverifikasi (dengan data dummy), termasuk di preview live:**
 - 5 halaman inti + 404, English routes, build produksi bersih di Astro 7
-- UI design system editorial diterapkan penuh (v1.4): palet Material 3 hijau, tipografi serif + sans, token terpusat di `src/styles/global.css`
+- UI design system **Professional Luxury** (v1.7, evolusi dari editorial v1.4): palet Material 3 hijau + aksen emas/champagne, tipografi serif + sans, hero full-bleed, splash screen, scroll-reveal & parallax ringan, token terpusat di `src/styles/global.css`
+- Foto placeholder hijau sudah diganti stok berlisensi bebas dari Wikimedia Commons (v1.7) — kredit & kewajiban atribusi di `docs/image-credits.md`, menunggu foto asli mitra (30 Juli)
 - Font self-hosted via `@fontsource`, tanpa request pihak ketiga (v1.5)
 - Tombol "Order via WhatsApp" per produk dengan template pesan berisi nama produk, nomor terpusat di `src/config.ts`
 - SEO on-site: meta title/description unik per halaman, canonical, Open Graph/Twitter Card, `sitemap.xml`, `robots.txt`
@@ -482,16 +485,17 @@ jauhar-hub/
 │   ├── content/
 │   │   ├── products/            # 1 file .md per produk (6 dummy)
 │   │   └── gallery/             # 1 file .md per foto (8 dummy)
-│   ├── styles/global.css        # design tokens: palet M3 hijau + skala tipografi editorial
-│   └── assets/                  # gambar sumber (dioptimasi otomatis saat build)
+│   ├── styles/global.css        # design tokens: palet M3 hijau + aksen emas, tipografi, animasi & splash
+│   └── assets/                  # gambar sumber (stok Commons sementara — dioptimasi otomatis saat build)
 ├── public/
 │   ├── robots.txt
 │   └── favicon.svg
 ├── scripts/
-│   └── generate-placeholders.mjs # generator gambar dummy (sementara pra-konten asli)
+│   └── generate-placeholders.mjs # generator gambar dummy (butuh --force; assets kini foto asli)
 ├── docs/
 │   ├── content-guide.md         # panduan isi konten (draft)
 │   ├── update-guide.md          # panduan update & serah terima (draft)
+│   ├── image-credits.md         # sumber & lisensi foto stok Wikimedia Commons (v1.7)
 │   └── training-notes.md        # (dibuat di Sprint 4)
 ├── astro.config.mjs             # site URL, integrasi sitemap, plugin Tailwind
 ├── PLANNING.md                  # sprint planning end-to-end + status progress

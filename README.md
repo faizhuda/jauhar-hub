@@ -9,8 +9,10 @@ pemesanan via WhatsApp. Dibangun oleh tim KKNT Inovasi IPB University × IIUM 20
 
 - [Astro](https://astro.build) 7 (fully static, zero-JS by default)
 - Tailwind CSS 4 (via `@tailwindcss/vite`)
-- Design system editorial: palet Material 3 hijau + tipografi Libre Caslon Text (serif)
-  dan Hanken Grotesk (sans), token terpusat di `src/styles/global.css`
+- Design system **Professional Luxury**: palet Material 3 hijau + aksen emas/champagne,
+  tipografi Libre Caslon Text (serif) dan Hanken Grotesk (sans), hero full-bleed,
+  splash screen sekali per sesi, scroll-reveal & parallax ringan (hormat
+  `prefers-reduced-motion`), token terpusat di `src/styles/global.css`
 - Font self-hosted via `@fontsource` (bukan CDN Google Fonts) — nol request pihak ketiga
 - Content Collections + Zod untuk data produk & galeri
 - `@astrojs/sitemap`, JSON-LD (`LocalBusiness` + `Product`)
@@ -23,7 +25,7 @@ pemesanan via WhatsApp. Dibangun oleh tim KKNT Inovasi IPB University × IIUM 20
 npm install
 npm run dev            # http://localhost:4321
 npm run build          # build produksi ke dist/ + validasi konten
-npm run placeholders   # regenerate gambar dummy (hanya selama konten asli belum masuk)
+npm run placeholders -- --force   # timpa foto dengan placeholder hijau (JANGAN, kecuali sengaja)
 ```
 
 ## Struktur penting
@@ -44,6 +46,9 @@ docs/                      # content guide & update guide (materi serah terima m
 - [PLANNING.md](PLANNING.md) — sprint planning end-to-end (14 Juli – 11 Agustus 2026)
 - [docs/content-guide.md](docs/content-guide.md) — cara mengisi/update konten
 - [docs/update-guide.md](docs/update-guide.md) — cara deploy & serah terima
+- [docs/image-credits.md](docs/image-credits.md) — sumber & lisensi foto stok (wajib dirawat selama foto Commons dipakai)
 
-> **Catatan:** seluruh foto & sebagian teks saat ini masih **dummy placeholder**.
-> Konten asli dari mitra masuk paling lambat 30 Juli 2026 (PLANNING.md §8).
+> **Catatan:** foto saat ini adalah **stok berlisensi bebas dari Wikimedia Commons**
+> (daftar & kewajiban atribusi: [docs/image-credits.md](docs/image-credits.md)) dan
+> sebagian teks masih draf dummy. Konten asli dari mitra masuk paling lambat
+> 30 Juli 2026 (PLANNING.md §8) — timpa file di `src/assets/` dengan nama yang sama.

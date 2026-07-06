@@ -1,7 +1,9 @@
 ---
+import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ProductCard from '../components/ProductCard.astro';
+import heroImage from '../assets/gallery/fertigation-rows.jpg';
 
 const products = (await getCollection('products')).sort(
   (a, b) => a.data.order - b.data.order
@@ -12,34 +14,55 @@ const products = (await getCollection('products')).sort(
   title="Products"
   description="Fresh cucumbers, pickles, cucumber chips, seedlings, and farm experiences from Jauhar Urban Farming, IIUM Gombak. Order easily via WhatsApp."
 >
-  {/* Hero */}
-  <section class="shell flex flex-col items-center py-12 text-center md:py-16">
-    <p class="kicker mb-5">The catalogue</p>
-    <h1 class="mb-6 max-w-4xl font-serif text-display-sm leading-tight text-primary md:text-display-lg">
-      Grown here.<br />Yours in a chat.
-    </h1>
-    <p class="max-w-2xl text-body-lg text-on-surface-variant">
-      Everything below is grown or made at our farm in IIUM Gombak.
-      Tap <strong>Order via WhatsApp</strong> on any item. A chat opens with your order
-      pre-filled, and you pick it up fresh at the farm.
-    </p>
+  {/* Hero grande full-bleed */}
+  <section class="relative flex min-h-[52svh] items-end overflow-hidden bg-primary md:min-h-[60svh]">
+    <div class="absolute -inset-y-[6%] inset-x-0" data-parallax>
+      <Image
+        src={heroImage}
+        alt=""
+        width={1200}
+        height={675}
+        widths={[640, 1200, 1600]}
+        sizes="100vw"
+        quality={60}
+        loading="eager"
+        fetchpriority="high"
+        class="h-full w-full object-cover"
+      />
+    </div>
+    <div class="hero-scrim absolute inset-0"></div>
+    <div class="shell relative z-10 pb-14 pt-32 md:pb-16 md:pt-40">
+      <div class="max-w-3xl">
+        <p class="kicker kicker-dark hero-enter mb-5">The catalogue</p>
+        <h1 class="hero-enter mb-6 font-serif text-display-sm text-on-primary md:text-display-lg">
+          Grown here.<br />Yours in a chat.
+        </h1>
+        <p class="hero-enter-delayed max-w-2xl text-body-lg text-on-primary/85">
+          Everything below is grown or made at our farm in IIUM Gombak.
+          Tap <strong>Order via WhatsApp</strong> on any item. A chat opens with your order
+          pre-filled, and you pick it up fresh at the farm.
+        </p>
+      </div>
+    </div>
   </section>
 
   {/* Katalog */}
-  <section class="shell pb-14 md:pb-20">
+  <section class="shell py-16 md:py-24">
     <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
       {
         products.map((product, index) => (
-          <ProductCard
-            product={product}
-            withJsonLd
-            loading={index < 3 ? 'eager' : 'lazy'}
-          />
+          <div data-reveal style={`--reveal-delay: ${(index % 3) * 130}ms`}>
+            <ProductCard
+              product={product}
+              withJsonLd
+              loading={index < 3 ? 'eager' : 'lazy'}
+            />
+          </div>
         ))
       }
     </div>
 
-    <p class="mt-12 border-t border-outline-variant/30 pt-6 text-body-md text-on-surface-variant">
+    <p class="mt-12 border-t border-accent/25 pt-6 text-body-md text-on-surface-variant">
       Prices are in Malaysian Ringgit (RM). Availability follows the harvest. If
       something is out of stock, ask us on WhatsApp when the next batch is coming.
     </p>

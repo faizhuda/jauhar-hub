@@ -48,8 +48,32 @@ const ogImageUrl = new URL(ogImage ?? ogDefault.src, Astro.site);
 
     {/* Font self-hosted via @fontsource (lihat src/styles/global.css) — tidak ada
        request pihak ketiga ke Google Fonts, mengurangi FCP (PRD §10.3) */}
+
+    {/* Dijalankan sebelum paint pertama:
+       - html.js       -> mengaktifkan state awal scroll-reveal (fallback no-JS aman)
+       - html.no-splash -> splash hanya tampil sekali per sesi tab */}
+    <script is:inline>
+      document.documentElement.classList.add('js');
+      try {
+        if (sessionStorage.getItem('jauhar-splash')) {
+          document.documentElement.classList.add('no-splash');
+        } else {
+          sessionStorage.setItem('jauhar-splash', '1');
+        }
+      } catch (e) {
+        document.documentElement.classList.add('no-splash');
+      }
+    </script>
   </head>
   <body class="flex min-h-screen flex-col">
+    {/* Splash screen branding — murni CSS, hilang sendiri (lihat global.css),
+       pointer-events none sehingga tidak pernah menghalangi interaksi. */}
+    <div id="splash" aria-hidden="true">
+      <p class="splash-name">{SITE.name}</p>
+      <div class="splash-rule"></div>
+      <p class="splash-sub">IIUM Gombak</p>
+    </div>
+
     <a
       href="#main"
       class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:bg-primary focus:px-4 focus:py-2 focus:text-on-primary"
@@ -61,5 +85,58 @@ const ogImageUrl = new URL(ogImage ?? ogDefault.src, Astro.site);
       <slot />
     </main>
     <Footer />
+
+    <script>
+      // Micro-interactions Professional Luxury. Semua efek hanya menyentuh
+      // opacity/transform (tanpa layout shift) dan mati total saat
+      // prefers-reduced-motion: reduce.
+      const motionOk = window.matchMedia('(prefers-reduced-motion: no-preference)').matches;
+
+      // Scroll-reveal: elemen [data-reveal] fade-up saat masuk viewport.
+      const revealed = document.querySelectorAll<HTMLElement>('[data-reveal]');
+      if (motionOk && 'IntersectionObserver' in window && revealed.length) {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            for (const entry of entries) {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('is-revealed');
+                observer.unobserve(entry.target);
+              }
+            }
+          },
+          { threshold: 0.12, rootMargin: '0px 0px -36px 0px' }
+        );
+        revealed.forEach((el) => observer.observe(el));
+      } else {
+        revealed.forEach((el) => el.classList.add('is-revealed'));
+      }
+
+      // Parallax ringan pada gambar hero [data-parallax]: transform-only,
+      // di-throttle lewat requestAnimationFrame.
+      const parallaxEls = document.querySelectorAll<HTMLElement>('[data-parallax]');
+      if (motionOk && parallaxEls.length) {
+        let ticking = false;
+        const update = () => {
+          ticking = false;
+          for (const el of parallaxEls) {
+            const rect = el.getBoundingClientRect();
+            if (rect.bottom < 0 || rect.top > window.innerHeight) continue;
+            // Progres -1..1 relatif tengah viewport; geser maksimum ±4.5%.
+            const progress =
+              (rect.top + rect.height / 2 - window.innerHeight / 2) /
+              (window.innerHeight / 2 + rect.height / 2);
+            el.style.transform = `translateY(${(-progress * 4.5).toFixed(2)}%)`;
+          }
+        };
+        const onScroll = () => {
+          if (!ticking) {
+            ticking = true;
+            requestAnimationFrame(update);
+          }
+        };
+        window.addEventListener('scroll', onScroll, { passive: true });
+        update();
+      }
+    </script>
   </body>
 </html>

@@ -11,9 +11,10 @@
 @import "@fontsource/libre-caslon-text/latin-700.css";
 
 /*
- * Design system "Revitalisasi UI & Design" (6 Juli 2026):
- * palet Material 3 hijau editorial + tipografi Libre Caslon Text (serif,
- * display/headline) dan Hanken Grotesk (sans, body/label).
+ * Design system "Professional Luxury" (7 Juli 2026):
+ * evolusi dari sistem editorial — hijau Material 3 tetap jadi fondasi brand,
+ * ditambah aksen emas/champagne, hairline dekoratif, micro-interaction halus,
+ * dan hero full-bleed. Semua animasi hormat pada prefers-reduced-motion.
  */
 @theme {
   --font-sans: "Hanken Grotesk", ui-sans-serif, system-ui, "Segoe UI", sans-serif;
@@ -35,6 +36,11 @@
   --color-secondary-fixed: #ccee94;
   --color-secondary-fixed-dim: #b1d27b;
   --color-on-secondary-fixed: #121f00;
+
+  /* Aksen luxury: emas antik (di atas terang) & champagne (di atas gelap) */
+  --color-accent: #96762f;
+  --color-accent-bright: #d8bc7d;
+  --color-accent-soft: #f1e9d6;
 
   /* Permukaan */
   --color-surface: #fcf9f8;
@@ -74,8 +80,8 @@
   --text-display-sm--line-height: 1.12;
   --text-display-sm--letter-spacing: -0.01em;
 
-  --text-display-lg: clamp(2.75rem, 3.4vw + 0.6rem, 4.5rem);
-  --text-display-lg--line-height: 1.1;
+  --text-display-lg: clamp(2.75rem, 3.4vw + 0.6rem, 4.75rem);
+  --text-display-lg--line-height: 1.08;
   --text-display-lg--letter-spacing: -0.02em;
 }
 
@@ -89,7 +95,7 @@
   }
 
   ::selection {
-    @apply bg-secondary-container text-on-secondary-fixed;
+    @apply bg-accent-soft text-primary;
   }
 }
 
@@ -99,13 +105,13 @@
     @apply mx-auto w-full max-w-[90rem] px-6 md:px-20;
   }
 
-  /* Tombol bergaya editorial: sudut tajam, label caps, target sentuh >=44px */
+  /* Tombol luxury: sudut tajam, label caps melebar, transisi lambat & halus */
   .btn {
-    @apply inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 text-label-caps uppercase transition-colors duration-300;
+    @apply inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 text-label-caps uppercase tracking-[0.16em] transition-all duration-500 ease-out;
   }
 
   .btn-primary {
-    @apply border border-primary bg-primary px-8 py-4 text-on-primary hover:bg-primary-container;
+    @apply border border-primary bg-primary px-8 py-4 text-on-primary hover:border-primary-container hover:bg-primary-container hover:shadow-lg hover:shadow-primary/20;
   }
 
   .btn-secondary {
@@ -116,12 +122,199 @@
     @apply border border-primary bg-transparent px-8 py-4 text-primary hover:bg-primary hover:text-on-primary;
   }
 
-  .btn-underline {
-    @apply border-b border-primary px-1 py-3 text-primary hover:text-on-secondary-container;
+  /* Tombol emas untuk hero gelap: isi champagne -> outline champagne saat hover */
+  .btn-gold {
+    @apply border border-accent-bright bg-accent-bright px-8 py-4 text-primary hover:bg-transparent hover:text-accent-bright;
   }
 
-  /* Kicker label di atas headline */
+  /* Outline putih tipis untuk CTA sekunder di atas foto gelap */
+  .btn-ghost-light {
+    @apply border border-on-primary/50 bg-transparent px-8 py-4 text-on-primary hover:border-on-primary hover:bg-on-primary/10;
+  }
+
+  .btn-underline {
+    @apply border-b border-primary px-1 py-3 text-primary hover:text-accent;
+  }
+
+  /* Kicker label dengan hairline emas — tanda tangan visual luxury */
   .kicker {
-    @apply block text-label-caps uppercase text-secondary;
+    @apply inline-flex items-center gap-3 text-label-caps uppercase tracking-[0.22em] text-accent;
+  }
+
+  .kicker::before {
+    content: "";
+    @apply h-px w-10 shrink-0 bg-accent/60;
+  }
+
+  /* Kicker di atas permukaan gelap */
+  .kicker-dark {
+    @apply text-accent-bright;
+  }
+
+  .kicker-dark::before {
+    @apply bg-accent-bright/60;
+  }
+
+  /* Kartu dengan hover lift premium (transform + shadow saja, tanpa layout shift) */
+  .card-luxe {
+    @apply transition-all duration-500 ease-out hover:-translate-y-1 hover:shadow-xl hover:shadow-primary/10;
+  }
+
+  /* Scrim gradasi untuk teks di atas foto hero full-bleed */
+  .hero-scrim {
+    background: linear-gradient(
+      to top,
+      rgb(0 24 3 / 0.88) 0%,
+      rgb(0 24 3 / 0.55) 45%,
+      rgb(0 24 3 / 0.28) 100%
+    );
+  }
+}
+
+/*
+ * ============ Micro-interactions & animasi (Professional Luxury) ============
+ * Aturan performa: HANYA opacity & transform (tidak memicu layout/paint besar,
+ * tidak menambah CLS). Seluruh blok dibungkus prefers-reduced-motion.
+ */
+
+/* Scroll-reveal: elemen ber-[data-reveal] muncul fade-up saat masuk viewport.
+   State tersembunyi hanya dipasang bila html.js ada (di-set inline script) —
+   tanpa JavaScript, konten tetap tampil normal. */
+@media (prefers-reduced-motion: no-preference) {
+  html.js [data-reveal] {
+    opacity: 0;
+    transform: translateY(26px);
+    transition:
+      opacity 0.9s cubic-bezier(0.22, 0.61, 0.36, 1),
+      transform 0.9s cubic-bezier(0.22, 0.61, 0.36, 1);
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+
+  html.js [data-reveal].is-revealed {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* Entrance hero: berjalan segera saat load (bukan scroll-triggered) supaya
+     elemen LCP tidak tertunda lama. */
+  .hero-enter {
+    animation: hero-enter 0.9s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+  }
+
+  .hero-enter-delayed {
+    animation: hero-enter 0.9s cubic-bezier(0.22, 0.61, 0.36, 1) 0.18s both;
+  }
+
+  @keyframes hero-enter {
+    from {
+      opacity: 0.01;
+      transform: translateY(22px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  /* Parallax ringan: gambar hero digeser via transform oleh script kecil. */
+  [data-parallax] {
+    will-change: transform;
+  }
+
+  /* Zoom foto sangat lambat untuk galeri/kartu (dipasang via kelas utility). */
+  .img-luxe {
+    transition: transform 1.2s cubic-bezier(0.22, 0.61, 0.36, 1);
+  }
+
+  .group:hover .img-luxe {
+    transform: scale(1.045);
+  }
+}
+
+/*
+ * Splash screen branding (sekali per sesi tab, ±1.5 detik):
+ * murni CSS — overlay menghilang sendiri lewat keyframes `forwards`, sehingga
+ * konten tidak pernah terkunci walau JavaScript gagal. pointer-events: none
+ * menjamin halaman tetap bisa di-tap sejak frame pertama.
+ */
+#splash {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.1rem;
+  background: var(--color-primary);
+  pointer-events: none;
+  animation: splash-exit 0.55s ease-in 1.05s forwards;
+}
+
+#splash .splash-name {
+  color: var(--color-on-primary);
+  font-family: var(--font-serif);
+  font-size: clamp(1.5rem, 4.5vw, 2.4rem);
+  letter-spacing: 0.04em;
+  animation: splash-in 0.8s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+}
+
+#splash .splash-rule {
+  width: 4.5rem;
+  height: 1px;
+  background: var(--color-accent-bright);
+  transform-origin: center;
+  animation: splash-rule 0.9s cubic-bezier(0.22, 0.61, 0.36, 1) 0.25s both;
+}
+
+#splash .splash-sub {
+  color: var(--color-accent-bright);
+  font-size: var(--text-label-caps);
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  animation: splash-in 0.8s cubic-bezier(0.22, 0.61, 0.36, 1) 0.35s both;
+}
+
+@keyframes splash-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes splash-rule {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes splash-exit {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+/* Kunjungan berikutnya dalam sesi yang sama, atau preferensi reduce-motion:
+   splash tidak ditampilkan sama sekali. */
+html.no-splash #splash {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #splash {
+    display: none;
+  }
+
+  html {
+    scroll-behavior: auto;
   }
 }

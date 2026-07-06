@@ -16,9 +16,9 @@ import teamC from '../assets/gallery/packing-day.jpg';
   title="About Us"
   description="The story of Jauhar Urban Farming, a student-led fertigation farm at IIUM Gombak founded in 2021, growing food and community on campus land."
 >
-  {/* Hero */}
-  <section class="relative flex min-h-[45vh] items-center overflow-hidden bg-surface-container-low">
-    <div class="absolute inset-0">
+  {/* Hero grande full-bleed */}
+  <section class="relative flex min-h-[62svh] items-end overflow-hidden bg-primary md:min-h-[70svh]">
+    <div class="absolute -inset-y-[6%] inset-x-0" data-parallax>
       <Image
         src={hero}
         alt=""
@@ -26,18 +26,20 @@ import teamC from '../assets/gallery/packing-day.jpg';
         height={675}
         widths={[640, 1200, 1600]}
         sizes="100vw"
+        quality={60}
         loading="eager"
         fetchpriority="high"
-        class="h-full w-full object-cover opacity-50"
+        class="h-full w-full object-cover"
       />
-      <div class="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-transparent"></div>
     </div>
-    <div class="shell relative z-10 py-16 text-center md:py-20">
-      <div class="mx-auto max-w-3xl">
-        <h1 class="mb-6 font-serif text-display-sm text-primary md:text-display-lg">
+    <div class="hero-scrim absolute inset-0"></div>
+    <div class="shell relative z-10 pb-14 pt-32 md:pb-18 md:pt-40">
+      <div class="max-w-3xl">
+        <p class="kicker kicker-dark hero-enter mb-5">Est. 2021 · IIUM Gombak</p>
+        <h1 class="hero-enter mb-6 font-serif text-display-sm text-on-primary md:text-display-lg">
           Growing food, growing people.
         </h1>
-        <p class="mx-auto max-w-2xl text-body-lg text-on-surface-variant">
+        <p class="hero-enter-delayed max-w-2xl text-body-lg text-on-primary/85">
           Rooted in the heart of IIUM Gombak, Jauhar Urban Farming is more than an
           agricultural initiative. It is a commitment to sustainable practices, student
           empowerment, and a closer relationship between campus and nature.
@@ -47,10 +49,10 @@ import teamC from '../assets/gallery/packing-day.jpg';
   </section>
 
   {/* Our story */}
-  <section class="shell py-14 md:py-20">
+  <section class="shell py-16 md:py-24">
     <div class="grid grid-cols-1 items-center gap-10 md:grid-cols-12">
-      <div class="md:col-span-5 md:col-start-2">
-        <p class="kicker mb-4">Our story</p>
+      <div class="md:col-span-5 md:col-start-2" data-reveal>
+        <p class="kicker mb-5">Our story</p>
         <h2 class="mb-6 font-serif text-headline-md text-primary md:text-headline-lg">
           From unused land to living farm.
         </h2>
@@ -69,57 +71,62 @@ import teamC from '../assets/gallery/packing-day.jpg';
           and entrepreneurship awards as a model of student-driven urban agriculture.
         </p>
       </div>
-      <div class="md:col-span-5 md:col-start-8">
-        <Image
-          src={storyImage}
-          alt="Community members planting seedlings together at the farm"
-          width={640}
-          height={480}
-          widths={[480, 640]}
-          sizes="(min-width: 768px) 480px, 92vw"
-          loading="lazy"
-          class="aspect-[4/3] w-full border border-outline-variant/30 object-cover"
-        />
+      <div class="md:col-span-5 md:col-start-8" data-reveal style="--reveal-delay: 150ms">
+        <div class="group overflow-hidden border border-accent/25 bg-background p-2">
+          <Image
+            src={storyImage}
+            alt="Volunteers planting seedlings in a garden bed at the farm"
+            width={640}
+            height={480}
+            widths={[480, 640]}
+            sizes="(min-width: 768px) 480px, 92vw"
+            loading="lazy"
+            class="img-luxe aspect-[4/3] w-full object-cover"
+          />
+        </div>
       </div>
     </div>
   </section>
 
-  {/* Full-bleed image break */}
-  <section class="relative h-[30vh] min-h-56 bg-primary md:h-[40vh]">
-    <Image
-      src={breakImage}
-      alt="Rows of cucumber plants growing on the fertigation system at IIUM Gombak"
-      width={1600}
-      height={1200}
-      widths={[640, 1200, 1600]}
-      sizes="100vw"
-      loading="lazy"
-      class="h-full w-full object-cover opacity-60"
-    />
+  {/* Full-bleed image break dengan parallax ringan */}
+  <section class="relative h-[32vh] min-h-56 overflow-hidden bg-primary md:h-[44vh]">
+    <div class="absolute -inset-y-[8%] inset-x-0" data-parallax>
+      <Image
+        src={breakImage}
+        alt="Rows of crops growing on the fertigation system in the greenhouse"
+        width={1600}
+        height={1200}
+        widths={[640, 1200, 1600]}
+        sizes="100vw"
+        quality={60}
+        loading="lazy"
+        class="h-full w-full object-cover opacity-70"
+      />
+    </div>
   </section>
 
   {/* Vision & mission bento */}
-  <section class="bg-surface-container-low">
-    <div class="shell py-14 md:py-20">
-      <div class="mb-8 text-center md:mb-10">
-        <p class="kicker mb-4">Purpose</p>
+  <section class="bg-accent-soft">
+    <div class="shell py-16 md:py-24">
+      <div class="mb-10 text-center md:mb-12" data-reveal>
+        <p class="kicker mb-5">Purpose</p>
         <h2 class="font-serif text-headline-md text-primary md:text-headline-lg">Guiding principles.</h2>
       </div>
       <div class="grid grid-cols-1 gap-8 md:grid-cols-2">
-        <div class="flex flex-col border border-primary-container bg-primary p-8 text-on-primary md:p-10">
+        <div class="flex flex-col border border-accent-bright/30 bg-primary p-8 text-on-primary md:p-10" data-reveal>
           <div>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mb-4 h-9 w-9 text-secondary-fixed" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mb-4 h-9 w-9 text-accent-bright" aria-hidden="true">
               <path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"></path>
               <circle cx="12" cy="12" r="3"></circle>
             </svg>
-            <h3 class="mb-4 font-serif text-headline-md text-secondary-fixed">Our vision</h3>
+            <h3 class="mb-4 font-serif text-headline-md text-accent-bright">Our vision</h3>
           </div>
           <p class="text-body-lg text-primary-fixed-dim">
             To be a leading model of campus-based urban agriculture, where sustainable
             food production and ecological care are part of everyday student life.
           </p>
         </div>
-        <div class="flex flex-col border border-outline-variant bg-background p-8 md:p-10">
+        <div class="flex flex-col border border-outline-variant bg-background p-8 md:p-10" data-reveal style="--reveal-delay: 150ms">
           <div>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mb-4 h-9 w-9 text-primary" aria-hidden="true">
               <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"></path>
@@ -129,28 +136,28 @@ import teamC from '../assets/gallery/packing-day.jpg';
           </div>
           <ul class="space-y-4 text-body-md text-on-surface-variant">
             <li class="flex items-start gap-3">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mt-1 h-4 w-4 shrink-0 text-secondary" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mt-1 h-4 w-4 shrink-0 text-accent" aria-hidden="true">
                 <path d="M21.801 10A10 10 0 1 1 17 3.335"></path>
                 <path d="m9 11 3 3L22 4"></path>
               </svg>
               Grow quality produce with water-efficient fertigation methods.
             </li>
             <li class="flex items-start gap-3">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mt-1 h-4 w-4 shrink-0 text-secondary" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mt-1 h-4 w-4 shrink-0 text-accent" aria-hidden="true">
                 <path d="M21.801 10A10 10 0 1 1 17 3.335"></path>
                 <path d="m9 11 3 3L22 4"></path>
               </svg>
               Turn harvests into value-added products that support the community.
             </li>
             <li class="flex items-start gap-3">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mt-1 h-4 w-4 shrink-0 text-secondary" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mt-1 h-4 w-4 shrink-0 text-accent" aria-hidden="true">
                 <path d="M21.801 10A10 10 0 1 1 17 3.335"></path>
                 <path d="m9 11 3 3L22 4"></path>
               </svg>
               Open the farm as a hands-on learning space for students and visitors.
             </li>
             <li class="flex items-start gap-3">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mt-1 h-4 w-4 shrink-0 text-secondary" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mt-1 h-4 w-4 shrink-0 text-accent" aria-hidden="true">
                 <path d="M21.801 10A10 10 0 1 1 17 3.335"></path>
                 <path d="m9 11 3 3L22 4"></path>
               </svg>
@@ -163,11 +170,11 @@ import teamC from '../assets/gallery/packing-day.jpg';
   </section>
 
   {/* The team */}
-  <section class="shell py-14 md:py-20">
+  <section class="shell py-16 md:py-24">
     <div class="grid grid-cols-1 gap-10 md:grid-cols-12">
-      <div class="md:col-span-4 md:col-start-1">
+      <div class="md:col-span-4 md:col-start-1" data-reveal>
         <div class="md:sticky md:top-32">
-          <p class="kicker mb-4">The team</p>
+          <p class="kicker mb-5">The team</p>
           <h2 class="mb-6 font-serif text-headline-md text-primary md:text-headline-lg">
             The people behind the farm.
           </h2>
@@ -187,10 +194,10 @@ import teamC from '../assets/gallery/packing-day.jpg';
       </div>
       {/* TODO(S1-05): ganti dengan foto & nama pengelola asli dari hasil wawancara mitra. */}
       <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 md:col-span-7 md:col-start-6">
-        <div class="group">
+        <div class="group" data-reveal>
           <Image
             src={teamA}
-            alt="Students learning transplanting techniques during a farm workshop"
+            alt="Students planting seedlings together during a farm workshop"
             width={480}
             height={480}
             widths={[320, 480]}
@@ -201,10 +208,10 @@ import teamC from '../assets/gallery/packing-day.jpg';
           <h3 class="font-serif text-xl text-primary">Student caretakers</h3>
           <p class="mt-1 text-label-caps uppercase text-on-surface-variant">Mahallah Halimah · Siddiq · Maryam</p>
         </div>
-        <div class="group">
+        <div class="group" data-reveal style="--reveal-delay: 130ms">
           <Image
             src={teamB}
-            alt="Volunteers harvesting fresh cucumbers early in the morning"
+            alt="Basket of freshly harvested cucumbers at the farm"
             width={480}
             height={480}
             widths={[320, 480]}
@@ -215,10 +222,10 @@ import teamC from '../assets/gallery/packing-day.jpg';
           <h3 class="font-serif text-xl text-primary">Community volunteers</h3>
           <p class="mt-1 text-label-caps uppercase text-on-surface-variant">Harvest &amp; planting days</p>
         </div>
-        <div class="group">
+        <div class="group" data-reveal style="--reveal-delay: 260ms">
           <Image
             src={teamC}
-            alt="Team members packing fresh cucumbers for campus orders"
+            alt="Hands packing a box of freshly harvested vegetables"
             width={480}
             height={480}
             widths={[320, 480]}
@@ -235,16 +242,16 @@ import teamC from '../assets/gallery/packing-day.jpg';
 
   {/* CTA */}
   <section class="bg-primary text-on-primary">
-    <div class="shell py-14 text-center md:py-20">
+    <div class="shell py-16 text-center md:py-24" data-reveal>
       <h2 class="font-serif text-headline-md md:text-headline-lg">Come visit the farm.</h2>
       <p class="mx-auto mt-4 max-w-xl text-body-md text-primary-fixed-dim">
         We love showing people around. Find us at IIUM Gombak, or book a farm tour.
       </p>
       <div class="mt-8 flex flex-col justify-center gap-4 sm:flex-row">
-        <a href="/contact" class="btn w-full border border-secondary-fixed bg-secondary-fixed px-8 py-4 text-on-secondary-fixed transition-colors hover:bg-transparent hover:text-secondary-fixed sm:w-auto">
+        <a href="/contact" class="btn btn-gold w-full sm:w-auto">
           Find &amp; contact us
         </a>
-        <a href="/products" class="btn w-full border border-on-primary/40 px-8 py-4 text-on-primary transition-colors hover:bg-on-primary/10 sm:w-auto">
+        <a href="/products" class="btn btn-ghost-light w-full sm:w-auto">
           See what we grow
         </a>
       </div>

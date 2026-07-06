@@ -12,7 +12,7 @@
 
 ---
 
-## 0. Status Progress (update 6 Juli 2026)
+## 0. Status Progress (update 7 Juli 2026)
 
 Website 5 halaman sudah terbangun penuh dengan data dummy dan lolos verifikasi lokal: build produksi bersih (Astro 7), SEO on-site lengkap, JSON-LD valid, responsif teruji di 360px. Pekerjaan teknis Sprint 0 sampai sebagian besar Sprint 2–3 selesai lebih cepat dari jadwal, sehingga fokus KKN nanti bergeser ke jalur konten & mitra, deployment, dan validasi eksternal.
 
@@ -27,7 +27,9 @@ Website 5 halaman sudah terbangun penuh dengan data dummy dan lolos verifikasi l
 | S3-01, S3-02, S3-04, S3-05, S3-07 | Galeri, Kontak, SEO | Gallery + lightbox `<dialog>` vanilla; Contact + Maps lazy; meta unik ≤60/≤155 per halaman; JSON-LD LocalBusiness; robots.txt + sitemap 5 halaman |
 | S3-11 (draft) | Dokumentasi | `docs/content-guide.md` & `docs/update-guide.md` versi stub |
 
-Keputusan yang sudah diambil: konten & route English (PRD v1.2); sosmed resmi mitra **hanya Instagram**, tidak ada Facebook; copywriting situs tanpa em dash (PRD v1.3); UI memakai design system editorial (PRD v1.4): palet Material 3 hijau (#001803 primary, #ccee94 lime), tipografi Libre Caslon Text (serif display) + Hanken Grotesk (sans body), sudut tajam, label caps, token terpusat di `src/styles/global.css`. Demi Core Web Vitals, mockup referensi diadaptasi: icon font & CDN Tailwind diganti SVG inline + Tailwind ter-compile, tanpa `bg-fixed`.
+Keputusan yang sudah diambil: konten & route English (PRD v1.2); sosmed resmi mitra **hanya Instagram**, tidak ada Facebook; copywriting situs tanpa em dash (PRD v1.3); UI memakai design system editorial (PRD v1.4) yang berevolusi menjadi **Professional Luxury** (PRD v1.7): palet Material 3 hijau (#001803 primary) + aksen emas/champagne, tipografi Libre Caslon Text (serif display) + Hanken Grotesk (sans body), hero full-bleed, splash screen sekali per sesi, scroll-reveal & parallax ringan (hormat `prefers-reduced-motion`), token terpusat di `src/styles/global.css`. Demi Core Web Vitals, mockup referensi diadaptasi: icon font & CDN Tailwind diganti SVG inline + Tailwind ter-compile, tanpa `bg-fixed`.
+
+**Perbaikan v1.7 (Professional Luxury + foto asli, 7 Juli 2026):** arah desain diperbarui dari minimalis editorial ke Professional Luxury (detail di PRD v1.7); seluruh placeholder hijau diganti foto stok berlisensi bebas dari Wikimedia Commons — kredit & kewajiban atribusi dicatat di `docs/image-credits.md`, tetap akan ditimpa foto asli mitra (hard deadline 30 Juli, S3-03); `npm run placeholders` kini butuh `--force`; gambar hero pakai `quality={60}` untuk menekan bobot WebP.
 
 **Perbaikan v1.6 (skala responsif):** tipografi display/headline jadi fluid via `clamp()` mengikuti lebar viewport; padding section dipangkas menyeluruh; kartu produk 4:3 dan lebih padat; `min-height` paksa di kartu bento dihapus; offset dekoratif gambar dihapus. Hasil: hero + CTA dan setiap kartu tampil utuh satu layar, teruji di viewport efektif 1280×630 (display scaling 150%), 360×740, dan 1920×1080.
 

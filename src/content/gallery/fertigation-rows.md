@@ -1,6 +1,6 @@
 ---
 image: ../../assets/gallery/fertigation-rows.jpg
-alt: Rows of cucumber plants growing on the fertigation system at Jauhar Urban Farming
+alt: Rows of crops growing on the fertigation system in the greenhouse
 caption: Fertigation beds in full swing behind Mahallah Halimah
 date: 2026-05-10
 order: 1

@@ -10,6 +10,18 @@ import { mkdir } from 'node:fs/promises';
 import path from 'node:path';
 import sharp from 'sharp';
 
+// Sejak 7 Juli 2026 src/assets/ berisi foto asli (stok Wikimedia Commons,
+// lihat docs/image-credits.md) — bukan lagi placeholder hijau. Script ini
+// akan MENIMPA semuanya, jadi wajib dijalankan dengan flag --force.
+if (!process.argv.includes('--force')) {
+  console.error(
+    'src/assets/ sudah berisi foto asli (lihat docs/image-credits.md).\n' +
+      'Menjalankan script ini akan menimpanya dengan placeholder hijau.\n' +
+      'Jika benar-benar sengaja, jalankan: npm run placeholders -- --force'
+  );
+  process.exit(1);
+}
+
 const PALETTES = [
   ['#2b5a27', '#4a8f3e'],
   ['#1e3c1e', '#35722e'],

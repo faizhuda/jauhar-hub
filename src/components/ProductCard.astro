@@ -35,7 +35,7 @@ const productLd = {
 };
 ---
 
-<article class="group flex flex-col border border-outline-variant/40 bg-surface-container-lowest">
+<article class="card-luxe group flex h-full flex-col border border-outline-variant/40 bg-surface-container-lowest hover:border-accent/40">
   <div class="relative overflow-hidden">
     <Image
       src={image}
@@ -45,11 +45,11 @@ const productLd = {
       widths={[320, 480, 640]}
       sizes="(min-width: 1024px) 400px, (min-width: 640px) 45vw, 92vw"
       loading={loading}
-      class="aspect-[4/3] w-full object-cover transition-transform duration-700 group-hover:scale-105"
+      class="img-luxe aspect-[4/3] w-full object-cover"
     />
     {
       featured && inStock && (
-        <span class="absolute left-4 top-4 bg-primary px-3 py-1 text-label-caps uppercase text-on-primary">
+        <span class="absolute left-4 top-4 bg-accent-bright px-3 py-1 text-label-caps uppercase text-primary">
           In season
         </span>
       )
@@ -67,7 +67,7 @@ const productLd = {
     <span class="text-label-caps uppercase text-on-surface-variant">{categoryLabels[category]}</span>
     <div class="flex items-start justify-between gap-4">
       <h3 class="font-serif text-xl text-primary">{name}</h3>
-      <p class="shrink-0 text-body-lg text-primary">
+      <p class="shrink-0 font-serif text-body-lg text-primary">
         RM {price.toFixed(2)}
         <span class="block text-right text-label-caps uppercase text-on-surface-variant">/ {unit}</span>
       </p>

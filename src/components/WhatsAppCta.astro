@@ -9,8 +9,8 @@ interface Props {
   /** Nama produk untuk template pesan; kosongkan untuk pesan umum. */
   productName?: string;
   label?: string;
-  /** Gaya tombol mengikuti design system editorial. */
-  variant?: 'primary' | 'secondary' | 'underline';
+  /** Gaya tombol mengikuti design system luxury. */
+  variant?: 'primary' | 'secondary' | 'underline' | 'gold' | 'ghost-light';
   /** Ukuran lebih besar untuk hero/kontak. */
   size?: 'md' | 'lg';
 }
@@ -21,6 +21,8 @@ const variantClasses = {
   primary: 'btn-primary',
   secondary: 'btn-secondary',
   underline: 'btn-underline',
+  gold: 'btn-gold',
+  'ghost-light': 'btn-ghost-light',
 }[variant];
 
 const sizeClasses = size === 'lg' || variant === 'underline' ? '' : 'px-6 py-3';

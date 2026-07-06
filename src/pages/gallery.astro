@@ -2,6 +2,7 @@
 import { Image, getImage } from 'astro:assets';
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import heroImage from '../assets/gallery/morning-harvest.jpg';
 
 const entries = (await getCollection('gallery')).sort(
   (a, b) => a.data.order - b.data.order
@@ -11,7 +12,7 @@ const entries = (await getCollection('gallery')).sort(
 const items = await Promise.all(
   entries.map(async (entry) => ({
     ...entry.data,
-    full: await getImage({ src: entry.data.image, width: 1600, format: 'webp' }),
+    full: await getImage({ src: entry.data.image, width: 1600, format: 'webp', quality: 65 }),
   }))
 );
 ---
@@ -20,29 +21,49 @@ const items = await Promise.all(
   title="Gallery"
   description="Photos from our fertigation beds at IIUM Gombak: harvests, workshops, campus bazaars, and daily life at Jauhar Urban Farming."
 >
-  <section class="shell py-12 md:py-16">
-    <div class="max-w-2xl">
-      <p class="kicker mb-5">Field notes</p>
-      <h1 class="mb-6 font-serif text-display-sm text-primary md:text-display-lg">
-        Life at the farm.
-      </h1>
-      <p class="text-body-lg text-on-surface-variant">
-        Harvest mornings, planting days, workshops, and everything in between,
-        all documented by our team. Tap any photo to see it up close.
-      </p>
+  {/* Hero grande full-bleed */}
+  <section class="relative flex min-h-[52svh] items-end overflow-hidden bg-primary md:min-h-[60svh]">
+    <div class="absolute -inset-y-[6%] inset-x-0" data-parallax>
+      <Image
+        src={heroImage}
+        alt=""
+        width={1200}
+        height={675}
+        widths={[640, 1200, 1600]}
+        sizes="100vw"
+        quality={60}
+        loading="eager"
+        fetchpriority="high"
+        class="h-full w-full object-cover"
+      />
     </div>
+    <div class="hero-scrim absolute inset-0"></div>
+    <div class="shell relative z-10 pb-14 pt-32 md:pb-16 md:pt-40">
+      <div class="max-w-3xl">
+        <p class="kicker kicker-dark hero-enter mb-5">Field notes</p>
+        <h1 class="hero-enter mb-6 font-serif text-display-sm text-on-primary md:text-display-lg">
+          Life at the farm.
+        </h1>
+        <p class="hero-enter-delayed max-w-2xl text-body-lg text-on-primary/85">
+          Harvest mornings, planting days, workshops, and everything in between,
+          all documented by our team. Tap any photo to see it up close.
+        </p>
+      </div>
+    </div>
+  </section>
 
-    <ul class="mt-10 grid grid-cols-1 gap-8 sm:grid-cols-2 md:mt-12 lg:grid-cols-3">
+  <section class="shell py-16 md:py-24">
+    <ul class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
       {
-        items.map((item) => (
-          <li>
+        items.map((item, index) => (
+          <li data-reveal style={`--reveal-delay: ${(index % 3) * 130}ms`}>
             <button
               type="button"
               data-lightbox-item
               data-full={item.full.src}
               data-alt={item.alt}
               data-caption={item.caption}
-              class="group block w-full overflow-hidden border border-outline-variant/40 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+              class="group block w-full overflow-hidden border border-outline-variant/40 transition-colors duration-500 hover:border-accent/40 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
             >
               <Image
                 src={item.image}
@@ -52,7 +73,7 @@ const items = await Promise.all(
                 widths={[320, 480, 640]}
                 sizes="(min-width: 1024px) 400px, (min-width: 640px) 45vw, 92vw"
                 loading="lazy"
-                class="aspect-[4/3] w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                class="img-luxe aspect-[4/3] w-full object-cover"
               />
               <span class="sr-only">Open photo: {item.caption}</span>
             </button>
