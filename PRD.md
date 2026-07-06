@@ -7,7 +7,7 @@
 | **Tema KKN** | Urban Farming with IoT, Promotion, and Economic Empowerment |
 | **Divisi** | Teknis (dahulu Divisi IoT) |
 | **Repo** | `jauhar-hub` |
-| **Versi Dokumen** | 1.4 |
+| **Versi Dokumen** | 1.5 |
 | **Tanggal** | 6 Juli 2026 |
 | **Durasi Pelaksanaan** | 14 Juli – 11 Agustus 2026 (4 minggu) |
 | **Tim Teknis** | 1 dari 8 anggota (latar belakang Ilmu Komputer) |
@@ -15,6 +15,8 @@
 ---
 
 ## Catatan Perubahan
+
+**v1.5** — Perbaikan responsivitas & performa (6 Juli 2026), berdasar feedback pengujian di browser nyata: (1) **Gallery**: hapus efek offset `translate-y-8` pada grid, menyebabkan kartu terlihat tidak sejajar — semua kartu kini rata; (2) **Kartu produk**: rasio gambar diubah dari potret 4:5 ke **1:1** karena di layar 1920×1080 satu kartu tingginya 784px, membuat harga & tombol pesan baru terlihat setelah scroll; (3) **Hero Beranda**: padding & jarak antar-elemen dipangkas, `min-height` diubah dari `75vh`/`85vh` (skala tak terkendali di viewport pendek) ke nilai tetap yang moderat, sehingga CTA "Browse our products" tampil tanpa scroll bahkan di viewport efektif ~650px (browser dengan toolbar/bookmark bar tebal); token `display-lg` diperkecil dari 80px ke 72px; (4) **Font self-hosted** via paket `@fontsource` (bukan lagi CDN Google Fonts) — menghapus 2 request pihak ketiga (`fonts.googleapis.com`, `fonts.gstatic.com`) yang sebelumnya me-render-block First Contentful Paint; font di-bundle bersama build, hanya subset latin, weight 400 & 700.
 
 **v1.4** — Revitalisasi UI (6 Juli 2026): seluruh halaman diadopsikan ke design system editorial: palet Material 3 hijau (primary `#001803`, aksen lime `#ccee94`, skala surface/outline lengkap), tipografi **Libre Caslon Text** (serif, display/headline) + **Hanken Grotesk** (sans, body/label caps), sudut tajam, label uppercase. Token design terpusat di `src/styles/global.css` (`@theme`). Demi Core Web Vitals, mockup referensi diadaptasi, bukan disalin mentah: tanpa CDN Tailwind runtime, tanpa icon font (SVG inline), tanpa `bg-fixed`, gambar tetap lewat pipeline `astro:assets`. Rasio foto produk di Section 11.3 disesuaikan ke potret 4:5. File mockup referensi tidak disimpan di repo.
 
@@ -74,18 +76,20 @@ Meluncurkan website resmi Jauhar Urban Farming yang **live, lengkap kontennya, c
 
 ### 3a. Status Implementasi (per 6 Juli 2026)
 
-Belum ada butir DoD yang bisa dicentang penuh karena website belum live di domain publik, tetapi fondasi teknisnya sudah selesai lebih cepat dari jadwal:
+Website sudah live di preview Vercel (`jauhar-hub.vercel.app`), fondasi teknisnya selesai lebih cepat dari jadwal. Belum ada butir DoD yang bisa dicentang penuh karena masih menunggu custom domain, konten asli, dan validasi eksternal:
 
-**Sudah terbangun & terverifikasi lokal (dengan data dummy):**
+**Sudah terbangun & terverifikasi (dengan data dummy), termasuk di preview live:**
 - 5 halaman inti + 404, English routes, build produksi bersih di Astro 7
 - UI design system editorial diterapkan penuh (v1.4): palet Material 3 hijau, tipografi serif + sans, token terpusat di `src/styles/global.css`
+- Font self-hosted via `@fontsource`, tanpa request pihak ketiga (v1.5)
 - Tombol "Order via WhatsApp" per produk dengan template pesan berisi nama produk, nomor terpusat di `src/config.ts`
 - SEO on-site: meta title/description unik per halaman, canonical, Open Graph/Twitter Card, `sitemap.xml`, `robots.txt`
 - JSON-LD `LocalBusiness` (Beranda) + `Product` ×6 (katalog), valid saat di-parse dari HTML build
 - Responsif mobile-first: tanpa horizontal scroll di 360px, target sentuh ≥44px, hamburger menu + lightbox teruji
+- PageSpeed Insights mobile awal: Performance 94, LCP 2.4s, CLS 0.002, TBT 0ms — diukur di preview Vercel sebelum optimasi font v1.5 (lihat catatan perubahan v1.5)
 - Content Collections ber-schema Zod (6 produk, 8 foto galeri) + draft content guide & update guide
 
-**Sisa pekerjaan (rincian urutan di [PLANNING.md](PLANNING.md) Section 0):** deploy Vercel + custom domain, Google Business Profile, seluruh konten asli dari mitra (deadline 30 Juli), validasi eksternal (Rich Results Test, PageSpeed/CWV production), Analytics, Search Console, uji multi-perangkat, pelatihan mitra, dan serah terima.
+**Sisa pekerjaan (rincian urutan di [PLANNING.md](PLANNING.md) Section 0):** custom domain, Google Business Profile, seluruh konten asli dari mitra (deadline 30 Juli), validasi eksternal (Rich Results Test, re-audit PageSpeed/CWV setelah v1.5), Analytics, Search Console, uji multi-perangkat, pelatihan mitra, dan serah terima.
 
 ---
 
@@ -182,7 +186,7 @@ Static site murni — tidak ada server, database, atau proses backend. Astro men
 | Sitemap | `@astrojs/sitemap` | Auto-generate saat build |
 | Hosting | **Vercel** (auto-deploy dari GitHub, gratis, SSL otomatis) | |
 | Version control | GitHub — repo `jauhar-hub` | |
-| Font | Google Fonts: **Libre Caslon Text** (serif, display/headline) + **Hanken Grotesk** (sans, body/label), hanya weight 400 & 700, `font-display: swap` | Bagian dari design system editorial (v1.4) |
+| Font | **Libre Caslon Text** (serif, display/headline) + **Hanken Grotesk** (sans, body/label), self-hosted via `@fontsource` (bukan CDN), subset latin, weight 400 & 700, `font-display: swap` | Bagian dari design system editorial (v1.4); self-hosted sejak v1.5 agar tidak ada request pihak ketiga yang memblokir FCP |
 | Icon | Lucide Icons (SVG inline, bukan icon font) | Icon font memuat seluruh set; SVG inline hanya yang terpakai |
 | Form kontak *(opsional)* | Formspree / Web3Forms (gratis, tanpa backend sendiri) | |
 | Analytics | Vercel Analytics atau Google Analytics | |
@@ -303,9 +307,9 @@ Target terukur: **Core Web Vitals hijau di mobile** — LCP < 2.5s, CLS < 0.1, I
 
 | Teknik | Implementasi |
 |---|---|
-| Font subset | Muat hanya weight yang dipakai (400 dan 700 untuk kedua keluarga font) — bukan seluruh keluarga font |
+| Font subset | Muat hanya weight yang dipakai (400 dan 700 untuk kedua keluarga font), subset latin saja — bukan seluruh keluarga font |
 | `font-display: swap` | Teks langsung tampil dengan font fallback selagi webfont dimuat — tidak ada layar kosong |
-| Preconnect | `<link rel="preconnect">` ke Google Fonts origin |
+| **Self-hosted, bukan CDN** (v1.5) | Font di-bundle via `@fontsource` bersama build — tidak ada request ke domain pihak ketiga (`fonts.googleapis.com`/`fonts.gstatic.com`) yang sebelumnya me-render-block First Contentful Paint |
 | SVG inline untuk icon | Hanya icon terpakai yang dimuat, bisa di-style via CSS, tanpa request font tambahan |
 | Maps embed lazy | Google Maps di halaman Kontak dimuat `loading="lazy"` — iframe Maps termasuk resource terberat |
 

@@ -2,7 +2,7 @@
 
 | | |
 |---|---|
-| **Referensi** | [PRD.md](PRD.md) v1.4 — sumber kebenaran scope & Definition of Done |
+| **Referensi** | [PRD.md](PRD.md) v1.5 — sumber kebenaran scope & Definition of Done |
 | **Konteks** | KKNT Inovasi IPB Internasional × Jauhar Urban Farming, IIUM Gombak, Selangor |
 | **Pelaksanaan** | Selasa 14 Juli – Selasa 11 Agustus 2026 (29 hari di lokasi) |
 | **Pra-KKN** | 5 – 13 Juli 2026 (Sprint 0, dikerjakan dari Indonesia) |
@@ -20,17 +20,20 @@ Website 5 halaman sudah terbangun penuh dengan data dummy dan lolos verifikasi l
 
 | Task | Cakupan | Catatan |
 |---|---|---|
-| S0-01, S0-02*, S0-04, S0-08 | Scaffold & fondasi | Astro 7 + Tailwind 4 + sitemap; schema Zod `products`/`gallery` + 6 produk & 8 foto dummy; template pesan WA di `src/config.ts`. *Bagian Vercel dari S0-02 masih menunggu (lihat daftar berikutnya) |
+| S0-01, S0-02, S0-04, S0-08 | Scaffold & fondasi | Astro 7 + Tailwind 4 + sitemap; repo terhubung ke Vercel, auto-deploy `main` jalan di `jauhar-hub.vercel.app`; schema Zod `products`/`gallery` + 6 produk & 8 foto dummy; template pesan WA di `src/config.ts` |
 | S1-08, S1-09, S1-10 | Layout & navigasi | BaseLayout (meta/OG/canonical) + Header/Footer; Content Collections di `src/content.config.ts`; hamburger menu teruji (tap di luar + Escape) |
+| S1-12 (awal) | Audit PageSpeed baseline | Mobile: Performance 94, LCP 2.4s, CLS 0.002, TBT 0ms — diukur sebelum optimasi font v1.5, akan diulang setelah v1.5 |
 | S2-01 s.d. S2-06 | Halaman inti + WA order | Home/About/Products lengkap (data dummy); tombol WA per produk ≥44px, full-width mobile; JSON-LD Product ×6; tanpa horizontal scroll di 360px |
 | S3-01, S3-02, S3-04, S3-05, S3-07 | Galeri, Kontak, SEO | Gallery + lightbox `<dialog>` vanilla; Contact + Maps lazy; meta unik ≤60/≤155 per halaman; JSON-LD LocalBusiness; robots.txt + sitemap 5 halaman |
 | S3-11 (draft) | Dokumentasi | `docs/content-guide.md` & `docs/update-guide.md` versi stub |
 
 Keputusan yang sudah diambil: konten & route English (PRD v1.2); sosmed resmi mitra **hanya Instagram**, tidak ada Facebook; copywriting situs tanpa em dash (PRD v1.3); UI memakai design system editorial (PRD v1.4): palet Material 3 hijau (#001803 primary, #ccee94 lime), tipografi Libre Caslon Text (serif display) + Hanken Grotesk (sans body), sudut tajam, label caps, token terpusat di `src/styles/global.css`. Demi Core Web Vitals, mockup referensi diadaptasi: icon font & CDN Tailwind diganti SVG inline + Tailwind ter-compile, tanpa `bg-fixed`.
 
+**Perbaikan v1.5 (hasil feedback pengujian di preview Vercel):** grid Gallery diluruskan (hapus offset stagger); rasio gambar kartu produk diubah 4:5 → 1:1 (kartu 784px di 1080p sebelumnya menyembunyikan harga & CTA di bawah lipatan); hero Beranda dipadatkan (padding & margin dipangkas, `min-height` vh diganti nilai tetap moderat) sehingga tombol CTA tampil tanpa scroll bahkan di viewport efektif ~650px; token `display-lg` 80px → 72px; font pindah dari CDN Google Fonts ke self-hosted `@fontsource` untuk menghapus 2 request pihak ketiga yang me-render-block FCP.
+
 ### ⏭️ Berikutnya (urutan eksekusi)
 
-1. **Hubungkan repo ke Vercel** + auto-deploy dari `main` (sisa S0-02/S1-01), lalu audit PageSpeed baseline (S1-12)
+1. **Re-audit PageSpeed** di preview Vercel setelah optimasi font v1.5, verifikasi FCP membaik (S1-12 lanjutan)
 2. **Beli domain** + update URL di `astro.config.mjs`, `src/config.ts`, `public/robots.txt` (S1-02)
 3. **Google Business Profile** mulai Hari 1 KKN, 14 Juli (S1-03)
 4. **Seluruh jalur konten & mitra**: wawancara profil (S1-05), NAP + nomor WA resmi (S1-06), foto asli (S1-07, S2-08), harga final (S1-11, S2-10), copywriting final (S2-07), konten 100% masuk 30 Juli (S3-03)

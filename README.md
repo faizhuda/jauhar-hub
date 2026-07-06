@@ -11,6 +11,7 @@ pemesanan via WhatsApp. Dibangun oleh tim KKNT Inovasi IPB University × IIUM 20
 - Tailwind CSS 4 (via `@tailwindcss/vite`)
 - Design system editorial: palet Material 3 hijau + tipografi Libre Caslon Text (serif)
   dan Hanken Grotesk (sans), token terpusat di `src/styles/global.css`
+- Font self-hosted via `@fontsource` (bukan CDN Google Fonts) — nol request pihak ketiga
 - Content Collections + Zod untuk data produk & galeri
 - `@astrojs/sitemap`, JSON-LD (`LocalBusiness` + `Product`)
 - Icon: SVG inline (tanpa icon font), gambar via pipeline `astro:assets`

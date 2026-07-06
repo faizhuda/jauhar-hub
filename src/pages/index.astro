@@ -45,8 +45,8 @@ const localBusinessLd = {
 >
   <JsonLd data={localBusinessLd} />
 
-  {/* Hero */}
-  <section class="relative flex min-h-[75vh] items-center overflow-hidden bg-surface-container-lowest md:min-h-[85vh]">
+  {/* Hero: padding & tipografi dijaga ringkas agar CTA tampil tanpa scroll di viewport umum */}
+  <section class="relative flex min-h-[500px] items-center overflow-hidden bg-surface-container-lowest md:min-h-[560px]">
     {/* Gambar LCP: eager + fetchpriority high (PRD §10.1) */}
     <div class="absolute inset-0 opacity-15 lg:left-auto lg:right-0 lg:w-[45%] lg:opacity-100">
       <Image
@@ -61,13 +61,13 @@ const localBusinessLd = {
         class="h-full w-full object-cover"
       />
     </div>
-    <div class="shell relative z-10 py-20 md:py-28">
+    <div class="shell relative z-10 py-14 md:py-16">
       <div class="max-w-2xl lg:max-w-[calc(55%-2rem)]">
-        <p class="kicker mb-6">IIUM Gombak · Selangor</p>
-        <h1 class="mb-8 font-serif text-display-sm text-primary md:text-display-lg">
+        <p class="kicker mb-4">IIUM Gombak · Selangor</p>
+        <h1 class="mb-6 font-serif text-display-sm text-primary md:text-display-lg">
           Fresh produce, grown on campus.
         </h1>
-        <p class="mb-12 max-w-lg text-body-lg text-on-surface-variant">
+        <p class="mb-8 max-w-lg text-body-lg text-on-surface-variant">
           {SITE.tagline}. Since 2021 our student community has turned unused campus land
           into productive fertigation beds, and everything we harvest can be yours.
         </p>
