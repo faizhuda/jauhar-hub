@@ -343,7 +343,7 @@ Asumsi dasar: **mayoritas pengunjung datang dari HP** (link dibagikan via WhatsA
 
 - Ukuran font body minimal **16px** — di bawah itu iOS Safari melakukan auto-zoom saat form di-tap dan teks sulit dibaca
 - Line-height 1.5–1.7 untuk paragraf
-- Gambar produk rasio konsisten — kartu katalog memakai potret **4:5** seragam (foto 1:1 juga aman, di-crop otomatis oleh `object-cover`); galeri **4:3** — grid tidak "loncat-loncat"
+- Gambar produk rasio konsisten — kartu katalog memakai **1:1** seragam (foto non-persegi otomatis di-crop oleh `object-cover`); galeri **4:3** — grid tidak "loncat-loncat"
 - Tabel (jika ada) dibungkus container `overflow-x: auto` — bukan memaksa layout pecah
 
 ### 11.4 Pengujian
