@@ -14,6 +14,7 @@ hapus baris terkait di tabel ini.
 | --- | --- | --- | --- |
 | `hero.jpg` | [Cucumber in the greenhouse](https://commons.wikimedia.org/wiki/File%3ACucumber_in_the_greenhouse.jpg) | Pascal Kings | CC BY 4.0 |
 | `og-default.jpg` | [Cucumber in the greenhouse](https://commons.wikimedia.org/wiki/File%3ACucumber_in_the_greenhouse.jpg) | Pascal Kings | CC BY 4.0 |
+| `about-hero.jpg` | [Working in the garden DVIDS169759](https://commons.wikimedia.org/wiki/File:Working_in_the_garden_DVIDS169759.jpg) | Petty Officer 2nd Class Adam Cole | Public domain |
 | `products/fresh-cucumber.jpg` | [Fresh green cucumbers](https://commons.wikimedia.org/wiki/File%3AFresh_green_cucumbers.jpg) | Rukkyah | CC BY-SA 4.0 |
 | `products/pickled-cucumber.jpg` | [Pickled-cucumbers-1520638](https://commons.wikimedia.org/wiki/File%3APickled-cucumbers-1520638.jpg) | WDnet | CC0 |
 | `products/cucumber-chips.jpg` | [Kale Chips](https://commons.wikimedia.org/wiki/File%3AKale_Chips_(3425805140).jpg) | Kari Sullivan | CC BY 2.0 |
