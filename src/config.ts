@@ -10,7 +10,8 @@ export const SITE = {
   name: 'Jauhar Urban Farming',
   tagline: 'Fresh, campus-grown produce from IIUM Gombak',
   // TODO(S1-02): ganti ke custom domain final (samakan dengan astro.config.mjs).
-  url: 'https://jauhar-hub.vercel.app',
+  // HARUS identik dengan `site` di astro.config.mjs dan Sitemap di public/robots.txt.
+  url: 'https://jauharurbanfarming.vercel.app',
 
   // TODO(S1-06): nomor WhatsApp order resmi dari mitra.
   // Format: kode negara + nomor, angka saja, tanpa "+" (dipakai untuk link wa.me).

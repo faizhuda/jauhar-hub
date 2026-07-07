@@ -7,7 +7,7 @@
 | **Tema KKN** | Urban Farming with IoT, Promotion, and Economic Empowerment |
 | **Divisi** | Teknis (dahulu Divisi IoT) |
 | **Repo** | `jauhar-hub` |
-| **Versi Dokumen** | 1.7 |
+| **Versi Dokumen** | 1.8 |
 | **Tanggal** | 7 Juli 2026 |
 | **Durasi Pelaksanaan** | 14 Juli – 11 Agustus 2026 (4 minggu) |
 | **Tim Teknis** | 1 dari 8 anggota (latar belakang Ilmu Komputer) |
@@ -15,6 +15,8 @@
 ---
 
 ## Catatan Perubahan
+
+**v1.8** — Fix domain mati merusak social share preview (7 Juli 2026): proyek Vercel berganti nama dari `jauhar-hub` ke `jauharurbanfarming`, tapi `site` di `astro.config.mjs`, `SITE.url` di `src/config.ts`, dan `Sitemap:` di `public/robots.txt` masih hardcode domain lama `jauhar-hub.vercel.app` — yang sekarang 404. Akibatnya **semua URL absolut** (canonical, `og:url`, `og:image`, `twitter:image`, `image`/`url` di JSON-LD LocalBusiness & 6 Product) menunjuk ke gambar/halaman yang sudah mati, sehingga preview link WhatsApp/sosmed gagal menampilkan gambar. Ketiga sumber domain disamakan ke `https://jauharurbanfarming.vercel.app`; ditambahkan juga `og:image:width`/`og:image:height`/`og:image:alt` (1200×630) di `BaseLayout.astro` agar crawler share tidak perlu fetch tambahan untuk menentukan dimensi. **Catatan penting:** WhatsApp meng-cache preview per URL — link yang sudah pernah dibagikan sebelum fix ini tetap perlu di-refresh cache-nya (mis. tempel ulang URL dengan query string dummy, atau tunggu cache WhatsApp kedaluwarsa) agar preview gambar yang benar muncul.
 
 **v1.7** — Arah desain Professional Luxury + foto asli (7 Juli 2026): (1) Design system berevolusi dari editorial minimal ke **Professional Luxury**: palet hijau dipertahankan, ditambah aksen emas antik/champagne (`--color-accent*`), kicker ber-hairline emas, tombol varian `btn-gold`/`btn-ghost-light`; (2) **Hero full-bleed "grande"** di semua halaman (52–88svh, scrim gradasi, tipografi display hingga 76px); (3) Micro-interactions: scroll-reveal fade-up (IntersectionObserver), parallax ringan ±4.5% (rAF), hover lift kartu, zoom foto lambat — semuanya hanya `opacity`/`transform` (CLS aman) dan nonaktif saat `prefers-reduced-motion: reduce`; (4) **Splash screen** branding ±1,6 detik, sekali per sesi tab (sessionStorage), murni CSS sehingga fail-safe tanpa JS; (5) Panel menu mobile mengikuti glassmorphism header (latar transparan di atas `bg-surface/80 + backdrop-blur`); (6) **Seluruh placeholder hijau diganti foto stok berlisensi bebas dari Wikimedia Commons** (CC0/PD/CC BY/CC BY-SA) — daftar sumber & kewajiban atribusi di `docs/image-credits.md`; `npm run placeholders` kini butuh flag `--force` agar foto tidak tertimpa; (7) Gambar hero diberi `quality={60}` untuk menekan bobot varian WebP terbesar (456→352 kB); alt text disinkronkan dengan isi foto baru. Terverifikasi: build bersih, tanpa horizontal scroll di 375px, tanpa error console, hamburger & lightbox berfungsi.
 
@@ -78,9 +80,9 @@ Meluncurkan website resmi Jauhar Urban Farming yang **live, lengkap kontennya, c
 - [ ] Minimal 1 sesi pelatihan resmi ke mitra: cara request update konten, cara membaca data analytics dasar
 - [ ] Dokumentasi lengkap diserahkan: source code, content guide, update guide, tersimpan di repo `jauhar-hub`
 
-### 3a. Status Implementasi (per 6 Juli 2026)
+### 3a. Status Implementasi (per 7 Juli 2026)
 
-Website sudah live di preview Vercel (`jauhar-hub.vercel.app`), fondasi teknisnya selesai lebih cepat dari jadwal. Belum ada butir DoD yang bisa dicentang penuh karena masih menunggu custom domain, konten asli, dan validasi eksternal:
+Website sudah live di preview Vercel (`jauharurbanfarming.vercel.app` — proyek Vercel berganti nama dari `jauhar-hub`, lihat catatan v1.8), fondasi teknisnya selesai lebih cepat dari jadwal. Belum ada butir DoD yang bisa dicentang penuh karena masih menunggu custom domain, konten asli, dan validasi eksternal:
 
 **Sudah terbangun & terverifikasi (dengan data dummy), termasuk di preview live:**
 - 5 halaman inti + 404, English routes, build produksi bersih di Astro 7

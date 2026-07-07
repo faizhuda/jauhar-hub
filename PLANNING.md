@@ -20,7 +20,7 @@ Website 5 halaman sudah terbangun penuh dengan data dummy dan lolos verifikasi l
 
 | Task | Cakupan | Catatan |
 |---|---|---|
-| S0-01, S0-02, S0-04, S0-08 | Scaffold & fondasi | Astro 7 + Tailwind 4 + sitemap; repo terhubung ke Vercel, auto-deploy `main` jalan di `jauhar-hub.vercel.app`; schema Zod `products`/`gallery` + 6 produk & 8 foto dummy; template pesan WA di `src/config.ts` |
+| S0-01, S0-02, S0-04, S0-08 | Scaffold & fondasi | Astro 7 + Tailwind 4 + sitemap; repo terhubung ke Vercel, auto-deploy `main` jalan di `jauharurbanfarming.vercel.app` (proyek Vercel di-rename dari `jauhar-hub`, lihat catatan v1.8 di bawah); schema Zod `products`/`gallery` + 6 produk & 8 foto dummy; template pesan WA di `src/config.ts` |
 | S1-08, S1-09, S1-10 | Layout & navigasi | BaseLayout (meta/OG/canonical) + Header/Footer; Content Collections di `src/content.config.ts`; hamburger menu teruji (tap di luar + Escape) |
 | S1-12 (awal) | Audit PageSpeed baseline | Mobile: Performance 94, LCP 2.4s, CLS 0.002, TBT 0ms — diukur sebelum optimasi font v1.5, akan diulang setelah v1.5 |
 | S2-01 s.d. S2-06 | Halaman inti + WA order | Home/About/Products lengkap (data dummy); tombol WA per produk ≥44px, full-width mobile; JSON-LD Product ×6; tanpa horizontal scroll di 360px |
@@ -28,6 +28,8 @@ Website 5 halaman sudah terbangun penuh dengan data dummy dan lolos verifikasi l
 | S3-11 (draft) | Dokumentasi | `docs/content-guide.md` & `docs/update-guide.md` versi stub |
 
 Keputusan yang sudah diambil: konten & route English (PRD v1.2); sosmed resmi mitra **hanya Instagram**, tidak ada Facebook; copywriting situs tanpa em dash (PRD v1.3); UI memakai design system editorial (PRD v1.4) yang berevolusi menjadi **Professional Luxury** (PRD v1.7): palet Material 3 hijau (#001803 primary) + aksen emas/champagne, tipografi Libre Caslon Text (serif display) + Hanken Grotesk (sans body), hero full-bleed, splash screen sekali per sesi, scroll-reveal & parallax ringan (hormat `prefers-reduced-motion`), token terpusat di `src/styles/global.css`. Demi Core Web Vitals, mockup referensi diadaptasi: icon font & CDN Tailwind diganti SVG inline + Tailwind ter-compile, tanpa `bg-fixed`.
+
+**Perbaikan v1.8 (fix domain mati, 7 Juli 2026):** proyek Vercel berganti nama ke `jauharurbanfarming.vercel.app`, tapi `site`/`SITE.url`/`Sitemap:` masih hardcode domain lama yang sudah 404 — akibatnya og:image, canonical, dan JSON-LD semua menunjuk ke URL mati sehingga preview link WhatsApp gagal tampil gambar. Ketiganya disamakan; ditambah `og:image:width/height/alt` di `BaseLayout.astro`. Link yang sudah pernah dibagikan sebelum fix ini butuh refresh cache preview WhatsApp secara manual.
 
 **Perbaikan v1.7 (Professional Luxury + foto asli, 7 Juli 2026):** arah desain diperbarui dari minimalis editorial ke Professional Luxury (detail di PRD v1.7); seluruh placeholder hijau diganti foto stok berlisensi bebas dari Wikimedia Commons — kredit & kewajiban atribusi dicatat di `docs/image-credits.md`, tetap akan ditimpa foto asli mitra (hard deadline 30 Juli, S3-03); `npm run placeholders` kini butuh `--force`; gambar hero pakai `quality={60}` untuk menekan bobot WebP.
 

@@ -3,7 +3,12 @@
 Website resmi **Jauhar Urban Farming** — profil digital, katalog produk, dan kanal
 pemesanan via WhatsApp. Dibangun oleh tim KKNT Inovasi IPB University × IIUM 2026.
 
-**Live:** https://jauhar-hub.vercel.app *(TODO: custom domain menyusul — S1-02)*
+**Live:** https://jauharurbanfarming.vercel.app *(TODO: custom domain menyusul — S1-02)*
+
+> ⚠️ Domain di atas HARUS identik dengan `site` di `astro.config.mjs`, `SITE.url` di
+> `src/config.ts`, dan `Sitemap:` di `public/robots.txt` — kalau salah satu beda,
+> `og:image`/canonical/JSON-LD ikut menunjuk ke URL yang salah dan preview link
+> (WhatsApp dll.) gagal tampil (insiden 7 Juli 2026, lihat PRD.md v1.8).
 
 ## Tech stack
 
