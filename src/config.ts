@@ -15,7 +15,7 @@ export const SITE = {
 
   // TODO(S1-06): nomor WhatsApp order resmi dari mitra.
   // Format: kode negara + nomor, angka saja, tanpa "+" (dipakai untuk link wa.me).
-  whatsapp: '60123456789',
+  whatsapp: '6287787128257',
 
   // TODO(S1-06): NAP final hasil koordinasi Liaison dengan mitra.
   address: {
